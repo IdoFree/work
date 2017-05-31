@@ -1,6 +1,6 @@
 package com.weijiajiao.model.request;
 
-import com.weijiajiao.model.UserType;
+import com.weijiajiao.model.enum_type.UserType;
 
 /**
  * Created by junli on 2017/5/27.
