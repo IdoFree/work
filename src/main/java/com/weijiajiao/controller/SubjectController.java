@@ -1,5 +1,6 @@
 package com.weijiajiao.controller;
 
+import com.weijiajiao.logcat.SystemLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "/subjects", description = "科目相关的操作")
 public class SubjectController {
 
+    @SystemLog
     @GetMapping("/all")
     @ApiOperation(value = "获取所有开通的城市")
     public String fetchAllSubjects(){
