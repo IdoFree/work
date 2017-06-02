@@ -1,5 +1,6 @@
 package com.weijiajiao.controller;
 
+import com.weijiajiao.logcat.SystemLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ public class AreaController {
 
     @GetMapping("/cities")
     @ApiOperation(value = "获取所有开通的城市")
+    @SystemLog
     public String fetchAllCities(){
        return "获取开通的城市";
     }

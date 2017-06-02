@@ -1,5 +1,6 @@
 package com.weijiajiao.controller;
 
+import com.weijiajiao.logcat.SystemLog;
 import com.weijiajiao.model.request.UniversityTeacherRegisterRequest;
 import com.weijiajiao.model.request.WeChatLoginRequest;
 import io.swagger.annotations.Api;
@@ -21,12 +22,14 @@ public class AuthenticationController {
 
     @PostMapping("/wechat_login")
     @ApiOperation(value = "微信登陆操作")
+    @SystemLog
     public String login(@ApiParam(name = "wechat_login_param" ,required = true, value = "微信小程序登陆参数") @RequestBody WeChatLoginRequest request){
         return "该方法还未实现";
     }
 
     @PostMapping("/teacher/register")
     @ApiOperation(value = "大学生老师注册")
+    @SystemLog
     public String registerUniversityTeacher(@ApiParam(name = "university_teacher_register_param" ,required = true, value = "微信小程序登陆参数") @RequestBody UniversityTeacherRegisterRequest request){
         return "该方法还未实现";
     }
