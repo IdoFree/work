@@ -1,5 +1,6 @@
 package com.weijiajiao.controller;
 
+import com.weijiajiao.logcat.SystemLog;
 import com.weijiajiao.model.request.PurchaseTeacherRequest;
 import com.weijiajiao.model.request.SearchTeacherRequest;
 import io.swagger.annotations.*;
@@ -16,6 +17,7 @@ import javax.validation.Valid;
 @Api(value = "/teacher", description = "老师相关的操作")
 public class TeacherController {
 
+    @SystemLog
     @GetMapping("/{teacherId}")
     @ApiOperation(value = "老师详情")
     @ApiImplicitParam(paramType = "path", name = "teacherId", dataType = "int", value = "老师的TeacherId", required = true, defaultValue = "1002")
@@ -25,12 +27,14 @@ public class TeacherController {
     }
 
 
+    @SystemLog
     @PostMapping("/search")
     @ApiOperation(value = "搜索老师")
     public String searchTeacher(@ApiParam(name = "search_parameter" ,required = true, value = "搜索条件") @RequestBody SearchTeacherRequest request){
         return "区域ID:" + request.areaId + "---" + "区域ID:" + request.subjectId;
     }
 
+    @SystemLog
     @PostMapping("/purchase")
     @ApiOperation(value = "购买老师")
     public String purchaseTeacher(@ApiParam(name = "purchase_teacher_param" ,required = true, value = "购买老师") @RequestBody PurchaseTeacherRequest request){

@@ -1,5 +1,6 @@
 package com.weijiajiao.controller;
 
+import com.weijiajiao.logcat.SystemLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +19,14 @@ public class CouponController {
 
     @GetMapping
     @ApiOperation(value = "查看用户的优惠卷")
+    @SystemLog
+
     public String fetchCoupons(){
        return "该方法还未实现";
     }
 
     @PostMapping("/purchase")
+    @SystemLog
     public void purchase(){
 
     }
