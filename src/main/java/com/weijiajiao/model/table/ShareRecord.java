@@ -1,9 +1,6 @@
 package com.weijiajiao.model.table;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -18,7 +15,8 @@ public class ShareRecord {
     @GeneratedValue
     protected Long id;
 
-    private Long userId;
+    @ManyToOne
+    private UserInfo user;
 
     //微信分享里分享群聊的标识
     private String shareTicket;
@@ -33,12 +31,12 @@ public class ShareRecord {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public UserInfo getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(UserInfo user) {
+        this.user = user;
     }
 
     public String getShareTicket() {

@@ -15,18 +15,21 @@ public class TeacherInfo {
 
     @Id
     @GeneratedValue
-    protected Long id;
+    private Long id;
 
-    @NotNull
-    private Long teacherId;
+    @OneToOne(cascade = {CascadeType.ALL})
+    private UserInfo userInfo;
 
-    private Long universityId;
+    @ManyToOne
+    private University university;
+
     private String majorName;
 
     @Enumerated(EnumType.STRING)
     private EducationDegreeType degreeType;
 
     private Boolean isTeacherMajor;
+    private Float gaokaoScore;
     private Float chineseScore;
     private Float mathScore;
     private Float englishScore;
@@ -43,20 +46,20 @@ public class TeacherInfo {
         this.id = id;
     }
 
-    public Long getTeacherId() {
-        return teacherId;
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public void setTeacherId(Long teacherId) {
-        this.teacherId = teacherId;
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
-    public Long getUniversityId() {
-        return universityId;
+    public University getUniversity() {
+        return university;
     }
 
-    public void setUniversityId(Long universityId) {
-        this.universityId = universityId;
+    public void setUniversity(University university) {
+        this.university = university;
     }
 
     public String getMajorName() {
@@ -81,6 +84,14 @@ public class TeacherInfo {
 
     public void setTeacherMajor(Boolean teacherMajor) {
         isTeacherMajor = teacherMajor;
+    }
+
+    public Float getGaokaoScore() {
+        return gaokaoScore;
+    }
+
+    public void setGaokaoScore(Float gaokaoScore) {
+        this.gaokaoScore = gaokaoScore;
     }
 
     public Float getChineseScore() {

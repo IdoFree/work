@@ -1,11 +1,6 @@
 package com.weijiajiao.model.table;
 
-import io.swagger.models.auth.In;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 /**
@@ -27,6 +22,9 @@ public class Account {
     private String password;
 
     private String openId;
+
+    @Column(name = "wechat_session_key")
+    private String wechatSessionKey;
 
     public Long getId() {
         return id;
@@ -58,5 +56,13 @@ public class Account {
 
     public void setOpenId(String openId) {
         this.openId = openId;
+    }
+
+    public String getWechatSessionKey() {
+        return wechatSessionKey;
+    }
+
+    public void setWechatSessionKey(String wechatSessionKey) {
+        this.wechatSessionKey = wechatSessionKey;
     }
 }

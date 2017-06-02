@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "/student", description = "用户相关的操作")
 public class StudentController {
 
+    @PostMapping("/profile/update")
+    @ApiOperation(value = "更新用户信息")
+    public String updateProfile(){
+        return "该方法还未实现";
+    }
+
     @GetMapping("/purchased_teachers")
     @ApiOperation(value = "购买的老师列表")
     public String purchasedTeachers(){

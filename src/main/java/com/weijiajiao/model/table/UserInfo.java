@@ -17,7 +17,8 @@ public class UserInfo {
     @GeneratedValue
     protected Long id;
 
-    private Long accountId;
+    @OneToOne(cascade = {CascadeType.ALL})
+    private Account account;
 
     @Column(name = "real_name")
     private String realName;
@@ -34,6 +35,10 @@ public class UserInfo {
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
+    private String country;
+    private String province;
+    private String city;
+
     public Long getId() {
         return id;
     }
@@ -42,12 +47,12 @@ public class UserInfo {
         this.id = id;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public String getRealName() {
@@ -96,5 +101,29 @@ public class UserInfo {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

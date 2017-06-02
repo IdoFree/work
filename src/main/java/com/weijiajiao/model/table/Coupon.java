@@ -17,7 +17,8 @@ public class Coupon {
     @GeneratedValue
     protected Long id;
 
-    private Long userId;
+    @ManyToOne
+    private UserInfo user;
 
     private String title;
     private String detail;
@@ -31,7 +32,7 @@ public class Coupon {
     @Column(name = "begin_time")
     private Date beginTime;
 
-    @Column(name = "expired_tiem")
+    @Column(name = "expired_time")
     private Date expiredTime;
 
     @Column(name = "update_time")
@@ -48,12 +49,12 @@ public class Coupon {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public UserInfo getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(UserInfo user) {
+        this.user = user;
     }
 
     public String getTitle() {
