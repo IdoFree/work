@@ -15,7 +15,6 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "wjj_account")
 public class Account {
-
     @Id
     @GeneratedValue
     protected Long id;
