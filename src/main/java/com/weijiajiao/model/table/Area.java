@@ -61,4 +61,15 @@ public class Area {
     public void setPinyin(String pinyin) {
         this.pinyin = pinyin;
     }
+
+    @Override
+    public String toString() {
+        return "Area{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", parentID=" + parentID +
+                ", level=" + level +
+                ", pinyin='" + pinyin + '\'' +
+                '}';
+    }
 }

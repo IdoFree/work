@@ -1,5 +1,6 @@
 package com.weijiajiao.repository;
 
+import com.weijiajiao.model.table.Area;
 import com.weijiajiao.model.table.TeacherTeachingArea;
 import org.springframework.data.repository.CrudRepository;
 

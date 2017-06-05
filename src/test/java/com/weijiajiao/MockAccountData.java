@@ -1,5 +1,6 @@
 package com.weijiajiao;
 
+import com.weijiajiao.controller.StudentController;
 import com.weijiajiao.model.enum_type.CouponType;
 import com.weijiajiao.model.enum_type.EducationDegreeType;
 import com.weijiajiao.model.enum_type.GenderType;
@@ -9,11 +10,13 @@ import com.weijiajiao.repository.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDateTime;
+import java.lang.invoke.MethodHandles;
 import java.util.Date;
 import java.util.Random;
 
@@ -45,6 +48,8 @@ public class MockAccountData {
 
     @Autowired
     private CouponReponsitory couponReponsitory;
+
+    private final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test
     public void addAccountData() {
@@ -102,12 +107,12 @@ public class MockAccountData {
         TeacherInfo teacher = new TeacherInfo();
 
         UserInfo userInfo = new UserInfo();
-        userInfo.setNickName("微信名3");
+        userInfo.setNickName("微信名4");
         userInfo.setCountry("中国");
         userInfo.setProvince("广东省");
         userInfo.setCity("广州市");
         userInfo.setGender(GenderType.female);
-        userInfo.setRealName("真实名3");
+        userInfo.setRealName("真实名4");
         userInfo.setUserType(UserType.teacher);
         String testAvatarUrl = "http://tva2.sinaimg.cn/crop.0.0.180.180.180/8a8109e2jw1e8qgp5bmzyj2050050aa8.jpg";
         userInfo.setAvatar(testAvatarUrl);
@@ -128,7 +133,7 @@ public class MockAccountData {
         teacher.setDegreeType(EducationDegreeType.college);
 
         University university = new University();
-        university.setId(new Long(1));
+        university.setId(new Long(2));
 
         teacher.setUniversity(university);
 
@@ -142,10 +147,10 @@ public class MockAccountData {
             TeacherTeachingArea teachingArea = new TeacherTeachingArea();
 
             TeacherInfo teacherInfo = new TeacherInfo();
-            teacherInfo.setId(new Long(4));
+            teacherInfo.setId(new Long(5));
             teachingArea.setTeacher(teacherInfo);
 
-            long[] randomAreaIds = {440103, 440104, 440105, 440106, 440111, 440112, 440113};
+            long[] randomAreaIds = {440303, 440304, 440305, 440306, 440307, 440308, 440309};
             long testAreaId = randomAreaIds[(new Random()).nextInt(7)];
 
             Area area = new Area();
@@ -222,8 +227,9 @@ public class MockAccountData {
 
             couponReponsitory.save(coupon);
 
-        }
-    }
+            logger.info("{}{}", 123, 345);
 
+    }
+    }
 
 }
