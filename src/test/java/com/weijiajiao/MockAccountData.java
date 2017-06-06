@@ -1,5 +1,11 @@
 package com.weijiajiao;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weijiajiao.dao.dto.CourseModel;
+import com.weijiajiao.dao.dto.TeacherModel;
+import com.weijiajiao.dao.repository.CourseRepository;
+import com.weijiajiao.dao.repository.TeacherRepository;
 import com.weijiajiao.model.enum_type.CouponType;
 import com.weijiajiao.model.enum_type.EducationDegreeType;
 import com.weijiajiao.model.enum_type.GenderType;
@@ -12,9 +18,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.Assert;
 
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -32,7 +39,10 @@ public class MockAccountData {
     private UserInfoReponsitory userInfoReponsitory;
 
     @Autowired
-    private TeacherInfoReponsitory teacherInfoReponsitory;
+    private TeacherRepository teacherInfoReponsitory;
+
+    @Autowired
+    private CourseRepository courseReponsitory;
 
     @Autowired
     private TeacherTeachingAreaRepository teacherTeachingAreaRepository;
@@ -224,6 +234,21 @@ public class MockAccountData {
 
         }
     }
+
+    @Test
+    public void queryTeacherByAreaIdAndCourseId() throws JsonProcessingException {
+        List<TeacherModel> teacherModelList = teacherInfoReponsitory.searchTeacherByAreaAndSubject(440105,11,0,10);
+        ObjectMapper mapper = new ObjectMapper();
+        Assert.hasText("", mapper.writeValueAsString(teacherModelList));
+    }
+    @Test
+    public void queryCoursesByTeacherId() throws JsonProcessingException {
+        List<CourseModel> courseInterf= courseReponsitory.queryCourseByTeacherId(2);
+        ObjectMapper mapper = new ObjectMapper();
+        Assert.hasText("", mapper.writeValueAsString(courseInterf));
+    }
+
+
 
 
 }
