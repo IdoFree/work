@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 public class Account {
     @Id
     @GeneratedValue
-    protected Long id;
+    private Long id;
 
     @Size(min = 2, max = 64)
     private String name;

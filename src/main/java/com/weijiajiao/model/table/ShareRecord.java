@@ -13,7 +13,7 @@ public class ShareRecord {
 
     @Id
     @GeneratedValue
-    protected Long id;
+    private Long id;
 
     @ManyToOne
     private UserInfo user;
