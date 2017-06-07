@@ -3,7 +3,9 @@ package com.weijiajiao.controller;
 import com.weijiajiao.logcat.SystemLog;
 import com.weijiajiao.model.request.PurchaseTeacherRequest;
 import com.weijiajiao.model.request.SearchTeacherRequest;
+import com.weijiajiao.service.TeacherService;
 import io.swagger.annotations.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,12 +19,15 @@ import javax.validation.Valid;
 @Api(value = "/teacher", description = "老师相关的操作")
 public class TeacherController {
 
+    @Autowired
+    TeacherService teacherService;
     @SystemLog
     @GetMapping("/{teacherId}")
     @ApiOperation(value = "老师详情")
     @ApiImplicitParam(paramType = "path", name = "teacherId", dataType = "int", value = "老师的TeacherId", required = true, defaultValue = "1002")
     public String showTeacher(@Valid @PathVariable Integer teacherId){
         System.out.println("teacherId:" + teacherId);
+        teacherService.getTeacherById(teacherId);
         return "老师ID:" + teacherId;
     }
 

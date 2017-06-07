@@ -37,7 +37,7 @@ public class CourseRepositoryImpl implements CourseRepositoryCustom {
      */
     @Override
     public List<CourseModel> queryCourseByTeacherId(long teacherId) {
-        String courseSql = "SELECT c.* FROM wjj_teacher_teaching_course AS tc INNER JOIN core_course AS c " +
+        String courseSql = "SELECT c.* FROM wjj_dev.wjj_teacher_teaching_course AS tc INNER JOIN wjj_dev.core_course AS c " +
                 " ON tc.course_id = c.id" +
                 " WHERE tc.teacher_id = ?1";
 
