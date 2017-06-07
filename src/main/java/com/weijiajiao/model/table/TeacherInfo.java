@@ -28,6 +28,8 @@ public class TeacherInfo {
     @Enumerated(EnumType.STRING)
     private EducationDegreeType degreeType;
 
+    private String introduce;
+
     private Boolean isTeacherMajor;
     private Float gaokaoScore;
     private Float chineseScore;

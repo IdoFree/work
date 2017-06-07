@@ -3,6 +3,8 @@ package com.weijiajiao.logcat;
 import java.io.*;
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,7 +28,16 @@ public class LogMapper {
             System.out.println("文件路径："+url.getPath());
             String rootFilePath = url.getPath().substring(0,url.getPath().lastIndexOf("target"))+LOG_DIR;
             System.out.println("文件路径："+rootFilePath);
+
+            //若不存在log目录的话，先创建log目录
+            File logDirectoryFile = new File(rootFilePath);
+            Boolean islogDirectoryExist = logDirectoryFile.exists() && logDirectoryFile.isDirectory();
+            if (!islogDirectoryExist) {
+                Files.createDirectories(Paths.get(rootFilePath));
+            }
+
             currentDate = simpleDateFormat.format(new Date(System.currentTimeMillis()));
+
             String logFilePath = rootFilePath + File.separator + currentDate +".txt";
             System.out.println("文件路径："+logFilePath);
             File logFile = new File(logFilePath);
