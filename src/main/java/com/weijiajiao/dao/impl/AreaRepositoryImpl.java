@@ -1,11 +1,8 @@
 package com.weijiajiao.dao.impl;
 
 import com.weijiajiao.dao.custom.AreaRepositoryCustom;
-import com.weijiajiao.dao.custom.CourseRepositoryCustom;
 import com.weijiajiao.dao.dto.AreaModel;
-import com.weijiajiao.dao.dto.CourseModel;
-import com.weijiajiao.logcat.LogUtil;
-import com.weijiajiao.model.table.Area;
+import com.weijiajiao.utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
@@ -33,7 +30,7 @@ public class AreaRepositoryImpl implements AreaRepositoryCustom {
                 "    a.pinyin as pinyin " +
                 "    from wjj_dev.wjj_teacher_teaching_area as t inner join wjj_dev.core_sys_area as a ON t.area_id = a.id" +
                 "    where t.teacher_id = ?1";
-        LogUtil.debug("AreaRepositoryImpl",areaSql);
+        Logger.debug(areaSql);
         Query query = entityManager.createNativeQuery(areaSql);
         query.setParameter(1, teacherId);
         List objectArrayList = query.getResultList();

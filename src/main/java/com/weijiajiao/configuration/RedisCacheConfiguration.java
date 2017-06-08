@@ -18,6 +18,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 @EnableCaching
@@ -48,9 +49,14 @@ public class RedisCacheConfiguration extends CachingConfigurerSupport {
         RedisTemplate redisTemplate = new RedisTemplate();
         redisTemplate.setConnectionFactory(jedisConnectionFactory());
         redisTemplate.setExposeConnection(true);
-        redisTemplate.setKeySerializer(new JdkSerializationRedisSerializer());
-        redisTemplate.setValueSerializer(new JsonRedisSerializer());
-
+        JsonRedisSerializer jsonRedisSerializer = new JsonRedisSerializer();
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+        JdkSerializationRedisSerializer jdkSerializationRedisSerializer = new JdkSerializationRedisSerializer();
+        redisTemplate.setDefaultSerializer(jdkSerializationRedisSerializer);
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        redisTemplate.setValueSerializer(jsonRedisSerializer);
+        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        redisTemplate.setHashValueSerializer(jsonRedisSerializer);
         return redisTemplate;
     }
 
