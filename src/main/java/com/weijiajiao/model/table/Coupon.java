@@ -1,5 +1,6 @@
 package com.weijiajiao.model.table;
 
+import com.weijiajiao.model.enum_type.CouponSourceType;
 import com.weijiajiao.model.enum_type.CouponStatus;
 import com.weijiajiao.model.enum_type.CouponType;
 
@@ -25,6 +26,9 @@ public class Coupon {
 
     @Enumerated(EnumType.STRING)
     private CouponType type;
+
+    @Enumerated(EnumType.STRING)
+    private CouponSourceType sourceType;
 
     @Enumerated(EnumType.STRING)
     private CouponStatus status;
@@ -79,6 +83,14 @@ public class Coupon {
 
     public void setType(CouponType type) {
         this.type = type;
+    }
+
+    public CouponSourceType getSourceType() {
+        return sourceType;
+    }
+
+    public void setSourceType(CouponSourceType sourceType) {
+        this.sourceType = sourceType;
     }
 
     public CouponStatus getStatus() {
