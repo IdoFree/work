@@ -2,9 +2,7 @@ package com.weijiajiao.dao.impl;
 
 import com.weijiajiao.dao.custom.CourseRepositoryCustom;
 import com.weijiajiao.dao.dto.CourseModel;
-import com.weijiajiao.logcat.LogUtil;
-import com.weijiajiao.model.table.Course;
-import com.weijiajiao.model.table.Subject;
+import com.weijiajiao.utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
@@ -37,11 +35,11 @@ public class CourseRepositoryImpl implements CourseRepositoryCustom {
      */
     @Override
     public List<CourseModel> queryCourseByTeacherId(long teacherId) {
-        String courseSql = "SELECT c.* FROM wjj_teacher_teaching_course AS tc INNER JOIN core_course AS c " +
+        String courseSql = "SELECT c.* FROM wjj_dev.wjj_teacher_teaching_course AS tc INNER JOIN wjj_dev.core_course AS c " +
                 " ON tc.course_id = c.id" +
                 " WHERE tc.teacher_id = ?1";
 
-        LogUtil.debug("CourseRepositoryImpl",courseSql.toString());
+        Logger.debug(courseSql.toString());
 
         Query query = entityManager.createNativeQuery(courseSql);
         query.setParameter(1, teacherId);
