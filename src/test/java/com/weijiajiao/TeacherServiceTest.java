@@ -27,5 +27,12 @@ public class TeacherServiceTest {
         Assert.hasText("", teacherService.searchTeachers(440105,11,0,10)+"");
     }
 
+    @Test
+    public void testQueryTeachersWithPhoneByStudentId()throws  Exception{
+        Assert.hasText("", teacherService.getTeachersWithPhoneByStudentId(1,0,10)+"");
+    }
+
+
+
 
 }
