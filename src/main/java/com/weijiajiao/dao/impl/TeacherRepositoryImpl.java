@@ -1,13 +1,10 @@
 package com.weijiajiao.dao.impl;
 
 import com.weijiajiao.dao.custom.TeacherRepositoryCustom;
-import com.weijiajiao.dao.dto.CourseModel;
 import com.weijiajiao.dao.dto.TeacherModel;
 import com.weijiajiao.dao.repository.AreaRepository;
 import com.weijiajiao.dao.repository.CourseRepository;
-import com.weijiajiao.logcat.LogUtil;
-import com.weijiajiao.model.table.Area;
-import org.apache.log4j.Logger;
+import com.weijiajiao.utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
@@ -47,7 +44,7 @@ public class TeacherRepositoryImpl implements TeacherRepositoryCustom {
         String teacherSql = "";
         teacherSql = generateSearchTeacherByAreaAndCourseSql(areaId, courseId,page,pageSize);
 
-        LogUtil.debug("TeacherRepositoryImpl",teacherSql.toString());
+        Logger.debug(teacherSql.toString());
 
         Query query = entityManager.createNativeQuery(teacherSql);
         if (courseId != 0) {

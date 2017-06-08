@@ -1,6 +1,11 @@
 package com.weijiajiao.dao.dto;
 
+import com.weijiajiao.model.enum_type.EducationDegreeType;
+import com.weijiajiao.model.enum_type.GenderType;
 import com.weijiajiao.model.table.Area;
+import com.weijiajiao.model.table.TeacherInfo;
+import com.weijiajiao.model.table.UserInfo;
+import org.hibernate.Hibernate;
 
 import java.util.List;
 
@@ -8,9 +13,9 @@ import java.util.List;
  * Created by fly on 2017/6/5.
  */
 public class TeacherModel extends BaseModel {
-    long teacherId;
-    long uid;
-    long aid;
+    Long teacherId;
+    Long uid;
+    Long aid;
     String avatar;
     String nickname;
     String realname;
@@ -20,42 +25,95 @@ public class TeacherModel extends BaseModel {
     List<CourseModel> teachCourses;
     List<AreaModel> teachAreas;
 
-    boolean isTeacherMajor;
+    Boolean isTeacherMajor;
     String degreeType;
     String major;
-    float gaokao;
-    float chinese;
-    float math;
-    float english;
-    float lizong;
-    float wenzong;
-    float music;
-    float sport;
+    Float gaokao;
+    Float chinese;
+    Float math;
+    Float english;
+    Float lizong;
+    Float wenzong;
+    Float music;
+    Float sport;
 
     public TeacherModel() {
     }
 
-    public long getTeacherId() {
+    public static TeacherModel parseFrom(TeacherInfo info) {
+        TeacherModel model = new TeacherModel();
+        model.teacherId = info.getId();
+        UserInfo userInfo = info.getUserInfo();
+        model.uid = userInfo.getId();
+        model.aid = userInfo.getAccount().getId();
+        model.avatar = userInfo.getAvatar();
+        model.nickname = userInfo.getNickName();
+        model.realname = userInfo.getRealName();
+        model.gender = userInfo.getGender() == GenderType.female ? "female" : "male";
+        model.university = info.getUniversity().getName();
+        model.isTeacherMajor = info.getTeacherMajor()!=null?info.getTeacherMajor():false;
+        model.degreeType = generateDegreeTypeStr(info.getDegreeType());
+        model.major = info.getMajorName();
+        model.gaokao = info.getGaokaoScore();
+        model.chinese = info.getChineseScore();
+        model.math = info.getMathScore();
+        model.english = info.getEnglishScore();
+        model.lizong = info.getLizongScore();
+        model.wenzong = info.getWenzongScore();
+        model.music = info.getMusicScore();
+        model.sport = info.getSportScore();
+        return model;
+    }
+
+    private static String generateDegreeTypeStr(EducationDegreeType degreeType) {
+        String degree = "";
+        switch (degreeType) {
+            case doctor:
+                degree = "doctor";
+                break;
+            case master:
+                degree = "master";
+                break;
+            case middleSchool:
+                degree = "middleSchool";
+                break;
+            case highSchool:
+                degree = "highSchool";
+                break;
+            case college:
+                degree = "college";
+                break;
+            case bachelor:
+                degree = "bachelor";
+                break;
+            case secondarySchool:
+                degree = "secondarySchool";
+                break;
+        }
+        return degree;
+    }
+
+    public Long getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(long teacherId) {
+    public void setTeacherId(Long teacherId) {
         this.teacherId = teacherId;
     }
 
-    public long getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(long uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 
-    public long getAid() {
+    public Long getAid() {
         return aid;
     }
 
-    public void setAid(long aid) {
+    public void setAid(Long aid) {
         this.aid = aid;
     }
 
@@ -99,11 +157,27 @@ public class TeacherModel extends BaseModel {
         this.university = university;
     }
 
-    public boolean isTeacherMajor() {
+    public List<CourseModel> getTeachCourses() {
+        return teachCourses;
+    }
+
+    public void setTeachCourses(List<CourseModel> teachCourses) {
+        this.teachCourses = teachCourses;
+    }
+
+    public List<AreaModel> getTeachAreas() {
+        return teachAreas;
+    }
+
+    public void setTeachAreas(List<AreaModel> teachAreas) {
+        this.teachAreas = teachAreas;
+    }
+
+    public Boolean getTeacherMajor() {
         return isTeacherMajor;
     }
 
-    public void setTeacherMajor(boolean teacherMajor) {
+    public void setTeacherMajor(Boolean teacherMajor) {
         isTeacherMajor = teacherMajor;
     }
 
@@ -123,87 +197,68 @@ public class TeacherModel extends BaseModel {
         this.major = major;
     }
 
-    public float getGaokao() {
+    public Float getGaokao() {
         return gaokao;
     }
 
-    public void setGaokao(float gaokao) {
+    public void setGaokao(Float gaokao) {
         this.gaokao = gaokao;
     }
 
-    public float getChinese() {
+    public Float getChinese() {
         return chinese;
     }
 
-    public void setChinese(float chinese) {
+    public void setChinese(Float chinese) {
         this.chinese = chinese;
     }
 
-    public float getMath() {
+    public Float getMath() {
         return math;
     }
 
-    public void setMath(float math) {
+    public void setMath(Float math) {
         this.math = math;
     }
 
-    public float getEnglish() {
+    public Float getEnglish() {
         return english;
     }
 
-    public void setEnglish(float english) {
+    public void setEnglish(Float english) {
         this.english = english;
     }
 
-    public float getLizong() {
+    public Float getLizong() {
         return lizong;
     }
 
-    public void setLizong(float lizong) {
+    public void setLizong(Float lizong) {
         this.lizong = lizong;
     }
 
-    public float getWenzong() {
+    public Float getWenzong() {
         return wenzong;
     }
 
-    public void setWenzong(float wenzong) {
+    public void setWenzong(Float wenzong) {
         this.wenzong = wenzong;
     }
 
-    public float getMusic() {
+    public Float getMusic() {
         return music;
     }
 
-    public void setMusic(float music) {
+    public void setMusic(Float music) {
         this.music = music;
     }
 
-    public float getSport() {
+    public Float getSport() {
         return sport;
     }
 
-    public void setSport(float sport) {
+    public void setSport(Float sport) {
         this.sport = sport;
-    }
-
-
-
-    public List<CourseModel> getTeachCourses() {
-        return teachCourses;
-    }
-
-    public void setTeachCourses(List<CourseModel> teachCourses) {
-        this.teachCourses = teachCourses;
-    }
-
-
-    public List<AreaModel> getTeachAreas() {
-        return teachAreas;
-    }
-
-    public void setTeachAreas(List<AreaModel> teachAreas) {
-        this.teachAreas = teachAreas;
     }
 
     @Override
