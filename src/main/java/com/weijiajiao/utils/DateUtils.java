@@ -16,7 +16,7 @@ public class DateUtils {
 
     public static Date getEndOfDay(Date date) {
         LocalDateTime localDateTime = dateToLocalDateTime(date);
-        LocalDateTime endOfDay = localDateTime.with(LocalTime.MAX);
+        LocalDateTime endOfDay = localDateTime.with(LocalTime.of(23, 59, 59));
         return localDateTimeToDate(endOfDay);
     }
 
