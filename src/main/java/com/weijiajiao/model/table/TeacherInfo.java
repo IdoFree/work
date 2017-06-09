@@ -151,4 +151,12 @@ public class TeacherInfo {
     public void setSportScore(Float sportScore) {
         this.sportScore = sportScore;
     }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
 }

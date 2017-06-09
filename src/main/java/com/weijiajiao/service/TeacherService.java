@@ -32,7 +32,7 @@ public class TeacherService {
 
     public List<TeacherModel> searchTeachers(long areaId, long courseId, int page, int pageSize) {
 
-        String key = "" + areaId + courseId + page + pageSize;
+        String key = "searchTeachers" + areaId + courseId + page + pageSize;
         List<TeacherModel> teacherModelList = teacherRedisDao.getList(key);
 
         if (teacherModelList != null && teacherModelList.size() != 0) {
@@ -53,6 +53,18 @@ public class TeacherService {
         teacherModel.setTeachAreas(areaRepository.queryAreaByTeacherId(teacherId));
         teacherRedisDao.add(teacherModel);
         return teacherModel;
+    }
+
+    public List<TeacherModel> getTeachersWithPhoneByStudentId(long studentId,int page,int pageSize){
+        String key = "getTeachersWithPhoneByStudentId" + studentId + page + pageSize;
+        List<TeacherModel> teacherModelList = teacherRedisDao.getList(key);
+
+        if (teacherModelList != null && teacherModelList.size() != 0) {
+            return teacherModelList;
+        }
+        teacherModelList = teacherRepository.queryTeacherByStudentId(studentId, page, pageSize);
+        teacherRedisDao.setList(key, teacherModelList);
+        return teacherModelList;
     }
 
 

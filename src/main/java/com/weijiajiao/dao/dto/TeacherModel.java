@@ -21,11 +21,13 @@ public class TeacherModel extends BaseModel {
     String realname;
     String gender;
     String university;
+    String phone;
 
     List<CourseModel> teachCourses;
     List<AreaModel> teachAreas;
 
     Boolean isTeacherMajor;
+    String introduce;
     String degreeType;
     String major;
     Float gaokao;
@@ -51,7 +53,7 @@ public class TeacherModel extends BaseModel {
         model.realname = userInfo.getRealName();
         model.gender = userInfo.getGender() == GenderType.female ? "female" : "male";
         model.university = info.getUniversity().getName();
-        model.isTeacherMajor = info.getTeacherMajor()!=null?info.getTeacherMajor():false;
+        model.isTeacherMajor = info.getTeacherMajor() != null ? info.getTeacherMajor() : false;
         model.degreeType = generateDegreeTypeStr(info.getDegreeType());
         model.major = info.getMajorName();
         model.gaokao = info.getGaokaoScore();
@@ -62,6 +64,15 @@ public class TeacherModel extends BaseModel {
         model.wenzong = info.getWenzongScore();
         model.music = info.getMusicScore();
         model.sport = info.getSportScore();
+        model.introduce = info.getIntroduce();
+        return model;
+    }
+
+    public static TeacherModel parseFrom(TeacherInfo info, boolean hasPhone) {
+        TeacherModel model = parseFrom(info);
+        if (hasPhone) {
+            model.phone = info.getUserInfo().getPhone();
+        }
         return model;
     }
 
@@ -261,6 +272,23 @@ public class TeacherModel extends BaseModel {
         this.sport = sport;
     }
 
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
         return "TeacherModel{" +
@@ -272,9 +300,11 @@ public class TeacherModel extends BaseModel {
                 ", realname='" + realname + '\'' +
                 ", gender='" + gender + '\'' +
                 ", university='" + university + '\'' +
+                ", phone='" + phone + '\'' +
                 ", teachCourses=" + teachCourses +
                 ", teachAreas=" + teachAreas +
                 ", isTeacherMajor=" + isTeacherMajor +
+                ", introduce='" + introduce + '\'' +
                 ", degreeType='" + degreeType + '\'' +
                 ", major='" + major + '\'' +
                 ", gaokao=" + gaokao +
