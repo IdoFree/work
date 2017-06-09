@@ -53,7 +53,7 @@ public class TeacherModel extends BaseModel {
         model.realname = userInfo.getRealName();
         model.gender = userInfo.getGender() == GenderType.female ? "female" : "male";
         model.university = info.getUniversity().getName();
-        model.isTeacherMajor = info.getTeacherMajor()!=null?info.getTeacherMajor():false;
+        model.isTeacherMajor = info.getTeacherMajor() != null ? info.getTeacherMajor() : false;
         model.degreeType = generateDegreeTypeStr(info.getDegreeType());
         model.major = info.getMajorName();
         model.gaokao = info.getGaokaoScore();
@@ -67,9 +67,12 @@ public class TeacherModel extends BaseModel {
         model.introduce = info.getIntroduce();
         return model;
     }
-    public static TeacherModel parseFrom(TeacherInfo info,boolean hasPhone) {
+
+    public static TeacherModel parseFrom(TeacherInfo info, boolean hasPhone) {
         TeacherModel model = parseFrom(info);
-        model.phone = info.getUserInfo().getPhone();
+        if (hasPhone) {
+            model.phone = info.getUserInfo().getPhone();
+        }
         return model;
     }
 
