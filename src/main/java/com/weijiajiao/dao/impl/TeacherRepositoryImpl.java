@@ -167,7 +167,6 @@ public class TeacherRepositoryImpl implements TeacherRepositoryCustom {
             teacherModel.setPhone((String) arr[19]);
             teacherModel.setRealname((String) arr[20]);
             teacherModel.setAid(((BigInteger) arr[21]).longValue());
-            // TODO: 2017/6/5  添加授课区域和授课科目、价格等
             teacherModel.setTeachAreas(areaRepository.queryAreaByTeacherId(((BigInteger) arr[0]).longValue()));
             teacherModel.setTeachCourses(courseRepository.queryCourseByTeacherId((((BigInteger) arr[0]).longValue())));
             teacherModelList.add(teacherModel);
