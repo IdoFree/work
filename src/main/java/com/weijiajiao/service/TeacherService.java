@@ -43,7 +43,7 @@ public class TeacherService {
         return teacherModelList;
     }
 
-    public TeacherModel getTeacherById(long teacherId) {
+    public TeacherModel getTeacherById(long teacherId,boolean hasPhone){
         TeacherModel teacherModel = teacherRedisDao.get(teacherId);
         if (teacherModel != null) {
             return teacherModel;
@@ -53,6 +53,9 @@ public class TeacherService {
         teacherModel.setTeachAreas(areaRepository.queryAreaByTeacherId(teacherId));
         teacherRedisDao.add(teacherModel);
         return teacherModel;
+    }
+    public TeacherModel getTeacherById(long teacherId) {
+        return getTeacherById(teacherId,false);
     }
 
     public List<TeacherModel> getTeachersWithPhoneByStudentId(long studentId,int page,int pageSize){
