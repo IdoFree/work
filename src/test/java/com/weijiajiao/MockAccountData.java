@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weijiajiao.dao.dto.CourseModel;
 import com.weijiajiao.dao.dto.TeacherModel;
 import com.weijiajiao.dao.repository.CourseRepository;
-import com.weijiajiao.dao.repository.TeacherRepository;
+import com.weijiajiao.repository.TeacherRepository;
 import com.weijiajiao.model.enum_type.CouponType;
 import com.weijiajiao.model.enum_type.EducationDegreeType;
 import com.weijiajiao.model.enum_type.GenderType;

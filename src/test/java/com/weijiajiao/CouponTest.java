@@ -1,6 +1,9 @@
 package com.weijiajiao;
 
+import com.weijiajiao.model.enum_type.CouponStatus;
+import com.weijiajiao.model.table.Coupon;
 import com.weijiajiao.service.CouponService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +22,24 @@ public class CouponTest {
 
     @Test
     public void TestAddCoupon(){
-        couponService.createLoginFreeCoupon(new Long(3));
+        couponService.createFreeCoupon(new Long(2));
+    }
+
+    @Test
+    public void TestUseCoupon(){
+        Coupon coupon = couponService.useCoupon(new Long(6));
+        Assert.assertEquals(CouponStatus.used, coupon.getStatus());
+    }
+
+    @Test
+    public void TestAvailableCoupons(){
+        Coupon[] coupons = couponService.availableCoupons(new Long(2));
+        Assert.assertEquals(2, coupons.length);
+    }
+
+    @Test
+    public void testExistCoupon(){
+        Assert.assertTrue("一定存在", couponService.isCouponExistById(new Long(2)));
     }
 
 }

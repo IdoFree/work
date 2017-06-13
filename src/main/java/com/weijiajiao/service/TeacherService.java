@@ -4,15 +4,10 @@ import com.weijiajiao.cache.impl.TeacherRedisDaoImpl;
 import com.weijiajiao.dao.dto.TeacherModel;
 import com.weijiajiao.dao.repository.AreaRepository;
 import com.weijiajiao.dao.repository.CourseRepository;
-import com.weijiajiao.dao.repository.TeacherRepository;
-import org.hibernate.Hibernate;
+import com.weijiajiao.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

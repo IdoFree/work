@@ -3,8 +3,10 @@ package com.weijiajiao.model.table;
 import com.weijiajiao.model.enum_type.CouponSourceType;
 import com.weijiajiao.model.enum_type.CouponStatus;
 import com.weijiajiao.model.enum_type.CouponType;
+import com.weijiajiao.utils.DateUtils;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -31,15 +33,12 @@ public class Coupon {
     private CouponSourceType sourceType;
 
     @Enumerated(EnumType.STRING)
-    private CouponStatus status;
+    private CouponStatus status = CouponStatus.unuse;
 
-    @Column(name = "begin_time")
     private Date beginTime;
 
-    @Column(name = "expired_time")
     private Date expiredTime;
 
-    @Column(name = "update_time")
     private Date updateTime;
 
     private String manjian;

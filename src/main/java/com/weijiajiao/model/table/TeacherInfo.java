@@ -40,6 +40,14 @@ public class TeacherInfo {
     private Float musicScore;
     private Float sportScore;
 
+    public TeacherInfo(){
+        super();
+    }
+
+    public TeacherInfo(Long id){
+       this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

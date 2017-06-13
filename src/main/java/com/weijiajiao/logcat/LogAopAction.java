@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -47,7 +46,7 @@ public class LogAopAction {
         String methodName = point.getSignature().getName();
         String className = point.getTarget().getClass().getSimpleName();
         try {
-            ip = SecurityUtils.getSubject().getSession().getHost();
+//            ip = SecurityUtils.getSubject().getSession().getHost();
         } catch (Exception ee) {
             ip = "无法获取登录用户Ip";
         }
@@ -57,7 +56,7 @@ public class LogAopAction {
             map = new HashMap<>();
         }
         // 登录名
-        user = SecurityUtils.getSubject().getPrincipal().toString();
+//        user = SecurityUtils.getSubject().getPrincipal().toString();
         if (StringUtils.isEmpty(user)) {
             user = "无法获取登录用户信息！";
         }
@@ -94,13 +93,13 @@ public class LogAopAction {
         Long time = 0L;
         String ip = null;
         try {
-            ip = SecurityUtils.getSubject().getSession().getHost();
+//            ip = SecurityUtils.getSubject().getSession().getHost();
         } catch (Exception e) {
             ip = "无法获取登录用户Ip";
         }
         try {
             // 登录名
-            user = SecurityUtils.getSubject().getPrincipal().toString();
+//            user = SecurityUtils.getSubject().getPrincipal().toString();
             if (StringUtils.isEmpty(user)) {
                 user = "无法获取登录用户信息！";
             }
