@@ -25,34 +25,34 @@ import java.util.List;
 public class TeacherController {
     @Autowired
     TeacherService teacherService;
+
     @SystemLog
     @GetMapping("/{teacherId}")
     @ApiOperation(value = "老师详情")
     @ApiImplicitParam(paramType = "path", name = "teacherId", dataType = "int", value = "老师的TeacherId", required = true, defaultValue = "1002")
-    public String showTeacher(@Valid @PathVariable Integer teacherId) throws Exception{
+    public String showTeacher(@Valid @PathVariable Integer teacherId) throws Exception {
         TeacherModel model = teacherService.getTeacherById(teacherId);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(model);
-        Logger.debug(json+"");
+        Logger.debug(json + "");
         return json;
     }
-
 
     @SystemLog
     @PostMapping("/search")
     @ApiOperation(value = "搜索老师")
-    public String searchTeacher(@ApiParam(name = "search_parameter" ,required = true, value = "搜索条件") @RequestBody SearchTeacherRequest request) throws JsonProcessingException {
-        List<TeacherModel> modelList = teacherService.searchTeachers(request.areaId,request.subjectId,request.page,request.pageSize);
+    public String searchTeacher(@ApiParam(name = "search_parameter", required = true, value = "搜索条件") @RequestBody SearchTeacherRequest request) throws JsonProcessingException {
+        List<TeacherModel> modelList = teacherService.searchTeachers(request.areaId, request.subjectId, request.page, request.pageSize);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(modelList);
-        Logger.debug(json+"");
+        Logger.debug(json + "");
         return json;
     }
 
     @SystemLog
     @PostMapping("/purchase")
     @ApiOperation(value = "购买老师")
-    public String purchaseTeacher(@ApiParam(name = "purchase_teacher_param" ,required = true, value = "购买老师") @RequestBody PurchaseTeacherRequest request){
+    public String purchaseTeacher(@ApiParam(name = "purchase_teacher_param", required = true, value = "购买老师") @RequestBody PurchaseTeacherRequest request) {
         return "该方法还未实现";
     }
 
