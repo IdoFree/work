@@ -31,6 +31,7 @@ public class TeacherController {
     @ApiOperation(value = "老师详情")
     @ApiImplicitParam(paramType = "path", name = "teacherId", dataType = "int", value = "老师的TeacherId", required = true, defaultValue = "1002")
     public String showTeacher(@Valid @PathVariable Integer teacherId) throws Exception {
+        // TODO: 2017/6/12 购买过的老师调用 #getTeacherById(long,boolean) 包含phone字段
         TeacherModel model = teacherService.getTeacherById(teacherId);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(model);
