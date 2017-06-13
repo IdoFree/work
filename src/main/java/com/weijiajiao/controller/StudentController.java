@@ -2,10 +2,12 @@ package com.weijiajiao.controller;
 
 import com.weijiajiao.logcat.SystemLog;
 import com.weijiajiao.model.request.ShareTeacherRequest;
+import com.weijiajiao.service.TeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -16,7 +18,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("student")
 @Api(value = "/student", description = "用户相关的操作")
 public class StudentController {
-
+    @Autowired
+    TeacherService teacherService;
     @SystemLog
     @PostMapping("/profile/update")
     @ApiOperation(value = "更新用户信息")
@@ -28,6 +31,7 @@ public class StudentController {
     @GetMapping("/purchased_teachers")
     @ApiOperation(value = "购买的老师列表")
     public String purchasedTeachers(){
+
         return "该方法还未实现";
     }
 

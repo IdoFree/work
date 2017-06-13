@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface TeacherRepositoryCustom {
     List<TeacherModel> searchTeacherByAreaAndSubject(long areaId, long courseId,int page,int pageSize);
+
+    List<TeacherModel> queryTeacherByStudentId(long studentId,int page,int pageSize);
 }
