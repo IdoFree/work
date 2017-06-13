@@ -30,9 +30,7 @@ public class CouponService {
         coupon.setSourceType(CouponSourceType.Share);
         coupon.setTitle("免费劵");
         coupon.setDetail("分享获得免费劵");
-        UserInfo user = new UserInfo();
-        user.setId(userId);
-        coupon.setUser(user);
+        coupon.setUser(new UserInfo(userId));
         coupon.setUpdateTime(new Date());
         couponReponsitory.save(coupon);
         return coupon;
@@ -50,6 +48,15 @@ public class CouponService {
           Coupon[] coupons = couponReponsitory.findByUser_IdAndStatus(userId, CouponStatus.unuse);
           return coupons;
     }
+
+    public Boolean isCouponExistById(Long id){
+        return couponReponsitory.existsById(id);
+    }
+
+    public Coupon findCouponById(Long id){
+        return couponReponsitory.findOne(id);
+    }
+
 
 
 }

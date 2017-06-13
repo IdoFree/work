@@ -1,5 +1,6 @@
 package com.weijiajiao.controller;
 
+import com.weijiajiao.configuration.ResponseData;
 import com.weijiajiao.logcat.SystemLog;
 import com.weijiajiao.model.table.Area;
 import com.weijiajiao.service.ConfigureService;
@@ -25,7 +26,8 @@ public class AreaController {
     @GetMapping("/cities")
     @ApiOperation(value = "获取所有开通的城市")
     @SystemLog
-    public Area[] fetchAllCities(){
-       return configureService.getActivityCity();
+    public ResponseData fetchAllCities(){
+        Area[] areas = configureService.getActivityCity();
+       return ResponseData.ok(areas);
     }
 }

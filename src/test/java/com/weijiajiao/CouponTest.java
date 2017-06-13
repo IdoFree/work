@@ -27,7 +27,7 @@ public class CouponTest {
 
     @Test
     public void TestUseCoupon(){
-        Coupon coupon = couponService.useCoupon(new Long(1));
+        Coupon coupon = couponService.useCoupon(new Long(6));
         Assert.assertEquals(CouponStatus.used, coupon.getStatus());
     }
 
@@ -37,5 +37,9 @@ public class CouponTest {
         Assert.assertEquals(2, coupons.length);
     }
 
+    @Test
+    public void testExistCoupon(){
+        Assert.assertTrue("一定存在", couponService.isCouponExistById(new Long(2)));
+    }
 
 }

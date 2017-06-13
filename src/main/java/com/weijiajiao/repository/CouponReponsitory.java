@@ -13,4 +13,5 @@ import java.util.Date;
 public interface CouponReponsitory extends CrudRepository<Coupon, Long> {
 
     Coupon[] findByUser_IdAndStatus(Long userId, CouponStatus status);
+    Boolean existsById(Long id);
 }

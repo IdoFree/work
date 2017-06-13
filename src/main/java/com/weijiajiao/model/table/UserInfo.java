@@ -39,6 +39,14 @@ public class UserInfo {
     private String province;
     private String city;
 
+    public UserInfo(){
+        super();
+    }
+
+    public UserInfo(Long id){
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
