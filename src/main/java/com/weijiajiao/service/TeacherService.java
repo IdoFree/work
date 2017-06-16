@@ -4,6 +4,7 @@ import com.weijiajiao.cache.impl.TeacherRedisDaoImpl;
 import com.weijiajiao.dao.dto.TeacherModel;
 import com.weijiajiao.dao.repository.AreaRepository;
 import com.weijiajiao.dao.repository.CourseRepository;
+import com.weijiajiao.model.table.TeacherInfo;
 import com.weijiajiao.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,7 +44,11 @@ public class TeacherService {
         if (teacherModel != null) {
             return teacherModel;
         }
-        teacherModel = TeacherModel.parseFrom(teacherRepository.findOne(teacherId));
+        TeacherInfo teacherInfo = teacherRepository.findOne(teacherId);
+        if (teacherInfo == null){
+            return null;
+        }
+        teacherModel = TeacherModel.parseFrom(teacherInfo);
         teacherModel.setTeachCourses(courseRepository.queryCourseByTeacherId(teacherId));
         teacherModel.setTeachAreas(areaRepository.queryAreaByTeacherId(teacherId));
         teacherRedisDao.add(teacherModel);

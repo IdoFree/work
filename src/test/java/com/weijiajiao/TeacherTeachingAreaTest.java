@@ -1,8 +1,7 @@
 package com.weijiajiao;
 
 import com.weijiajiao.model.table.Area;
-import com.weijiajiao.model.table.TeacherTeachingArea;
-import com.weijiajiao.repository.AreaReponsitory;
+import com.weijiajiao.repository.AreaRepository;
 import com.weijiajiao.repository.TeacherTeachingAreaRepository;
 import com.weijiajiao.utils.Logger;
 import org.junit.Test;
@@ -24,7 +23,7 @@ public class TeacherTeachingAreaTest {
     private TeacherTeachingAreaRepository teacherTeachingAreaRepository;
 
     @Autowired
-    private AreaReponsitory areaReponsitory;
+    private AreaRepository areaReponsitory;
 
     @Test
     public void TestActivityCity(){

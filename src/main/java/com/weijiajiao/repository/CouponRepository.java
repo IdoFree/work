@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Created by junli on 2017/6/2.
  */
-public interface CouponReponsitory extends CrudRepository<Coupon, Long> {
+public interface CouponRepository extends CrudRepository<Coupon, Long> {
 
     Coupon[] findByUser_IdAndStatus(Long userId, CouponStatus status);
     Boolean existsById(Long id);

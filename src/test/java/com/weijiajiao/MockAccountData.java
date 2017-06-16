@@ -36,10 +36,10 @@ import java.util.Random;
 public class MockAccountData {
 
     @Autowired
-    private AccountReponsitory accountReponsitory;
+    private AccountRepository accountRepository;
 
     @Autowired
-    private UserInfoReponsitory userInfoReponsitory;
+    private UserInfoRepository userInfoReponsitory;
 
     @Autowired
     private TeacherRepository teacherInfoReponsitory;
@@ -54,10 +54,10 @@ public class MockAccountData {
     private TeacherTeachingCourseRepository teacherTeachingCourseRepository;
 
     @Autowired
-    private ShareRecordReponsitory shareRecordReponsitory;
+    private ShareRecordRepository shareRecordReponsitory;
 
     @Autowired
-    private CouponReponsitory couponReponsitory;
+    private CouponRepository couponReponsitory;
 
     private final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -65,7 +65,7 @@ public class MockAccountData {
     public void addAccountData() {
         for (Integer i = 0; i < 10; i++) {
             Account account = mockAccountData();
-            accountReponsitory.save(account);
+            accountRepository.save(account);
         }
     }
 

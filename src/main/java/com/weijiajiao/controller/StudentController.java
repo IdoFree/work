@@ -2,6 +2,7 @@ package com.weijiajiao.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weijiajiao.configuration.ResponseData;
 import com.weijiajiao.dao.dto.TeacherModel;
 import com.weijiajiao.logcat.SystemLog;
 import com.weijiajiao.model.request.ShareTeacherRequest;
@@ -38,12 +39,12 @@ public class StudentController {
     @SystemLog
     @GetMapping("/purchased_teachers")
     @ApiOperation(value = "购买的老师列表")
-    public String purchasedTeachers(Long studentId,int page,int pageSize) throws JsonProcessingException {
+    public ResponseData purchasedTeachers(Long studentId, int page, int pageSize) throws JsonProcessingException {
         List<TeacherModel> modelList = teacherService.getTeachersWithPhoneByStudentId(studentId,page,pageSize);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(modelList);
-        Logger.debug(json + "");
-        return json;
+        ResponseData data = new ResponseData();
+        data.setStatus(modelList!=null);
+        data.setData(modelList);
+        return data;
     }
 
     @SystemLog

@@ -5,9 +5,9 @@ import com.weijiajiao.model.table.Area;
 import com.weijiajiao.model.table.CourseCategory;
 import com.weijiajiao.model.table.CourseSubCategory;
 import com.weijiajiao.model.table.Grade;
-import com.weijiajiao.repository.AreaReponsitory;
-import com.weijiajiao.repository.CourseCategoryReponsitory;
-import com.weijiajiao.repository.CourseReponsitory;
+import com.weijiajiao.repository.AreaRepository;
+import com.weijiajiao.repository.CourseCategoryRepository;
+import com.weijiajiao.repository.CourseRepository;
 import com.weijiajiao.repository.CourseSubCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,16 +21,16 @@ import java.util.ArrayList;
 public class ConfigureService {
 
     @Autowired
-    private AreaReponsitory areaReponsitory;
+    private AreaRepository areaReponsitory;
 
     @Autowired
-    private CourseCategoryReponsitory courseCategoryReponsitory;
+    private CourseCategoryRepository courseCategoryReponsitory;
 
     @Autowired
     private CourseSubCategoryRepository courseSubCategoryRepository;
 
     @Autowired
-    private CourseReponsitory courseReponsitory;
+    private CourseRepository courseReponsitory;
 
     public Area[] getActivityCity(){
         Long[] ids = areaReponsitory.findActivityCityIds();

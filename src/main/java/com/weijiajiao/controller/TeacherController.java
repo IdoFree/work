@@ -2,6 +2,7 @@ package com.weijiajiao.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weijiajiao.configuration.ResponseData;
 import com.weijiajiao.dao.dto.TeacherModel;
 import com.weijiajiao.logcat.SystemLog;
 import com.weijiajiao.model.request.PurchaseTeacherRequest;
@@ -30,24 +31,25 @@ public class TeacherController {
     @GetMapping("/{teacherId}")
     @ApiOperation(value = "老师详情")
     @ApiImplicitParam(paramType = "path", name = "teacherId", dataType = "int", value = "老师的TeacherId", required = true, defaultValue = "1002")
-    public String showTeacher(@Valid @PathVariable Integer teacherId) throws Exception {
+    public ResponseData showTeacher(@Valid @PathVariable Integer teacherId) throws Exception {
         // TODO: 2017/6/12 购买过的老师调用 #getTeacherById(long,boolean) 包含phone字段
         TeacherModel model = teacherService.getTeacherById(teacherId);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(model);
-        Logger.debug(json + "");
-        return json;
+        ResponseData data = new ResponseData();
+        data.setData(model);
+        data.setStatus(model != null);
+        return data;
     }
 
     @SystemLog
     @PostMapping("/search")
     @ApiOperation(value = "搜索老师")
-    public String searchTeacher(@ApiParam(name = "search_parameter", required = true, value = "搜索条件") @RequestBody SearchTeacherRequest request) throws JsonProcessingException {
+    public ResponseData searchTeacher(@ApiParam(name = "search_parameter", required = true, value = "搜索条件") @RequestBody SearchTeacherRequest request) throws JsonProcessingException {
         List<TeacherModel> modelList = teacherService.searchTeachers(request.areaId, request.subjectId, request.page, request.pageSize);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(modelList);
-        Logger.debug(json + "");
-        return json;
+        Logger.debug(modelList + "");
+        ResponseData data = new ResponseData();
+        data.setData(modelList);
+        data.setStatus(modelList!=null);
+        return data;
     }
 
     @SystemLog
