@@ -1,5 +1,7 @@
 package com.weijiajiao;
 
+import com.weijiajiao.configuration.exception.CouponNotFoundException;
+import com.weijiajiao.configuration.exception.CustomException;
 import com.weijiajiao.model.enum_type.CouponStatus;
 import com.weijiajiao.model.table.Coupon;
 import com.weijiajiao.service.CouponService;
@@ -40,6 +42,13 @@ public class CouponTest {
     @Test
     public void testExistCoupon(){
         Assert.assertTrue("一定存在", couponService.isCouponExistById(new Long(2)));
+    }
+
+    @Test
+    public void testInstance(){
+        CouponNotFoundException exception = new CouponNotFoundException();
+        Boolean isSuccess = exception instanceof CustomException;
+        Assert.assertTrue("fuck", isSuccess);
     }
 
 }

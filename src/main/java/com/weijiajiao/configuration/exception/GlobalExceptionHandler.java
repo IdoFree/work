@@ -1,8 +1,11 @@
 package com.weijiajiao.configuration.exception;
 
+import com.weijiajiao.configuration.ResponseCode;
 import com.weijiajiao.configuration.ResponseData;
+import com.weijiajiao.utils.Logger;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,12 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = CustomException.class)
+    @ExceptionHandler(Exception.class)
     @ResponseBody
-    public ResponseData handleCustomException(HttpServletRequest req, CustomException e) {
+    public ResponseData handleException(HttpServletRequest req, Exception e) {
         ResponseData response = new ResponseData();
         response.setMessage(e.getMessage());
-        response.setCode(e.getCode());
+        Boolean isCustomException = e instanceof CustomException;
+        Integer code = isCustomException ? ((CustomException) e).getCode() : ResponseCode.Internal_Server_Error.getCode();
+        response.setCode(code);
         response.setData(null);
         response.setStatus(false);
         return response;

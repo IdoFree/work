@@ -1,6 +1,7 @@
 package com.weijiajiao.model.table;
 
 import com.weijiajiao.model.enum_type.EducationDegreeType;
+import com.weijiajiao.model.enum_type.SubjectType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -31,6 +32,7 @@ public class TeacherInfo {
     private String introduce;
 
     private Boolean isTeacherMajor;
+    private SubjectType subjectType;
     private Float gaokaoScore;
     private Float chineseScore;
     private Float mathScore;
@@ -86,6 +88,14 @@ public class TeacherInfo {
 
     public void setDegreeType(EducationDegreeType degreeType) {
         this.degreeType = degreeType;
+    }
+
+    public SubjectType getSubjectType() {
+        return subjectType;
+    }
+
+    public void setSubjectType(SubjectType subjectType) {
+        this.subjectType = subjectType;
     }
 
     public Boolean getTeacherMajor() {

@@ -3,6 +3,7 @@ package com.weijiajiao.model.table;
 import com.weijiajiao.model.enum_type.AreaLevel;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by junli on 2017/5/31.
@@ -10,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "core_sys_area")
-public class Area {
+public class Area implements Serializable {
     @Id
     private Long id;
 

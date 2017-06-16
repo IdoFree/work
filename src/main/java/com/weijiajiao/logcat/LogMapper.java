@@ -92,7 +92,7 @@ public class LogMapper {
     }
 
     private void print(String s) throws IOException {
-              fileWriter.write(s);
+//              fileWriter.write(s);
     }
 
     private static boolean isCurrentDate() {

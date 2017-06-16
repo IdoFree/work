@@ -7,7 +7,8 @@ public enum ResponseCode {
 
     Teacher_Not_Found(406),
     User_Not_Found(407),
-    Coupon_Not_Found(408);
+    Coupon_Not_Found(408),
+    Internal_Server_Error(500);
 
     private Integer code;
     public void setCode(Integer code) {
