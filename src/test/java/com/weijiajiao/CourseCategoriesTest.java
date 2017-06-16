@@ -1,22 +1,16 @@
 package com.weijiajiao;
 
-import com.weijiajiao.model.response.CourseCategoryResponse;
 import com.weijiajiao.model.table.CourseCategory;
 import com.weijiajiao.model.table.CourseSubCategory;
-import com.weijiajiao.repository.CourseCategoryReponsitory;
+import com.weijiajiao.repository.CourseCategoryRepository;
 import com.weijiajiao.repository.CourseSubCategoryRepository;
 import com.weijiajiao.service.ConfigureService;
-import com.weijiajiao.utils.Logger;
-import net.bytebuddy.asm.Advice;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by junli on 2017/6/6.
@@ -30,7 +24,7 @@ public class CourseCategoriesTest {
     private ConfigureService configureService;
 
     @Autowired
-    private CourseCategoryReponsitory courseCategoryReponsitory;
+    private CourseCategoryRepository courseCategoryReponsitory;
 
     @Autowired
     private CourseSubCategoryRepository courseSubCategoryRepository;

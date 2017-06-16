@@ -9,7 +9,7 @@ import javax.persistence.Cacheable;
 /**
  * Created by junli on 2017/6/5.
  */
-public interface AreaReponsitory extends CrudRepository<Area, Long> {
+public interface AreaRepository extends CrudRepository<Area, Long> {
 //     @org.springframework.cache.annotation.Cacheable(value = "activity_city")
      Area[] findByIdIn(Long[] ids);
 

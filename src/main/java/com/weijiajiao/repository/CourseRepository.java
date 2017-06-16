@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by junli on 2017/6/2.
  */
-public interface CourseReponsitory extends CrudRepository<Course, Long> {
+public interface CourseRepository extends CrudRepository<Course, Long> {
    @Cacheable(value = "find_course_by_grade")
    Course[] findByGrade(Grade grade);
 }
