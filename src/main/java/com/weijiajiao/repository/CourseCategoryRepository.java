@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by junli on 2017/6/6.
  */
-public interface CourseCategoryReponsitory extends CrudRepository<CourseCategory, Long> {
+public interface CourseCategoryRepository extends CrudRepository<CourseCategory, Long> {
     CourseCategory[] findByParent(CourseCategory parent);
     CourseCategory[] findByParent_Id(Long parentId);
 }

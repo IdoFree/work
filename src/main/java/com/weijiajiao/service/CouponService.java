@@ -5,14 +5,11 @@ import com.weijiajiao.model.enum_type.CouponStatus;
 import com.weijiajiao.model.enum_type.CouponType;
 import com.weijiajiao.model.table.Coupon;
 import com.weijiajiao.model.table.UserInfo;
-import com.weijiajiao.repository.CouponReponsitory;
-import com.weijiajiao.utils.DateUtils;
-import com.weijiajiao.utils.Logger;
+import com.weijiajiao.repository.CouponRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Optional;
 
 /**
  * Created by junli on 2017/6/7.
@@ -22,7 +19,7 @@ import java.util.Optional;
 public class CouponService {
 
     @Autowired
-    private CouponReponsitory couponReponsitory;
+    private CouponRepository couponReponsitory;
 
     public Coupon createFreeCoupon(Long userId){
         Coupon coupon = new Coupon();
