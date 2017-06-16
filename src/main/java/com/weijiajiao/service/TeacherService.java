@@ -2,9 +2,9 @@ package com.weijiajiao.service;
 
 import com.weijiajiao.cache.impl.TeacherRedisDaoImpl;
 import com.weijiajiao.dao.dto.TeacherModel;
-import com.weijiajiao.dao.repository.AreaRepository;
-import com.weijiajiao.dao.repository.CourseRepository;
 import com.weijiajiao.model.table.TeacherInfo;
+import com.weijiajiao.repository.AreaRepository;
+import com.weijiajiao.repository.CourseRepository;
 import com.weijiajiao.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

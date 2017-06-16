@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weijiajiao.dao.dto.CourseModel;
 import com.weijiajiao.dao.dto.TeacherModel;
-import com.weijiajiao.dao.repository.CourseRepository;
 import com.weijiajiao.repository.TeacherRepository;
 import com.weijiajiao.model.enum_type.CouponType;
 import com.weijiajiao.model.enum_type.EducationDegreeType;

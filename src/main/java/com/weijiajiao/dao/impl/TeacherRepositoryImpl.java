@@ -2,11 +2,10 @@ package com.weijiajiao.dao.impl;
 
 import com.weijiajiao.dao.custom.TeacherRepositoryCustom;
 import com.weijiajiao.dao.dto.TeacherModel;
-import com.weijiajiao.dao.repository.AreaRepository;
-import com.weijiajiao.dao.repository.CourseRepository;
+import com.weijiajiao.repository.AreaRepository;
+import com.weijiajiao.repository.CourseRepository;
 import com.weijiajiao.utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
