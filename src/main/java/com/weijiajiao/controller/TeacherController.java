@@ -31,7 +31,7 @@ public class TeacherController {
     @GetMapping("/{teacherId}")
     @ApiOperation(value = "老师详情")
     @ApiImplicitParam(paramType = "path", name = "teacherId", dataType = "int", value = "老师的TeacherId", required = true, defaultValue = "1002")
-    public ResponseData showTeacher(@Valid @PathVariable Integer teacherId) throws Exception {
+    public ResponseData showTeacher(@Valid @PathVariable Integer teacherId) {
         // TODO: 2017/6/12 购买过的老师调用 #getTeacherById(long,boolean) 包含phone字段
         TeacherModel model = teacherService.getTeacherById(teacherId);
         ResponseData data = new ResponseData();
@@ -43,7 +43,7 @@ public class TeacherController {
     @SystemLog
     @PostMapping("/search")
     @ApiOperation(value = "搜索老师")
-    public ResponseData searchTeacher(@ApiParam(name = "search_parameter", required = true, value = "搜索条件") @RequestBody SearchTeacherRequest request) throws JsonProcessingException {
+    public ResponseData searchTeacher(@ApiParam(name = "search_parameter", required = true, value = "搜索条件") @RequestBody SearchTeacherRequest request) {
         List<TeacherModel> modelList = teacherService.searchTeachers(request.areaId, request.subjectId, request.page, request.pageSize);
         Logger.debug(modelList + "");
         ResponseData data = new ResponseData();

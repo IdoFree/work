@@ -1,13 +1,14 @@
 package com.weijiajiao.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weijiajiao.configuration.ResponseData;
 import com.weijiajiao.dao.dto.TeacherModel;
 import com.weijiajiao.logcat.SystemLog;
 import com.weijiajiao.model.request.ShareTeacherRequest;
+import com.weijiajiao.model.request.UpdateUserInfoRequest;
+import com.weijiajiao.model.table.UserInfo;
 import com.weijiajiao.service.TeacherService;
-import com.weijiajiao.utils.Logger;
+import com.weijiajiao.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -15,7 +16,6 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -29,11 +29,18 @@ public class StudentController {
     @Autowired
     TeacherService teacherService;
 
+    @Autowired
+    UserService userService;
+
     @SystemLog
     @PostMapping("/profile/update")
     @ApiOperation(value = "更新用户信息")
-    public String updateProfile(){
-        return "该方法还未实现";
+    public ResponseData updateProfile(@ApiParam(name = "user_info", required = true, value = "用户信息")@RequestBody UpdateUserInfoRequest request){
+        UserInfo userInfo = userService.updateUserProfile(request.parseUserInfo());
+        ResponseData data = new ResponseData();
+        data.setStatus(userInfo!=null);
+        data.setData(userInfo);
+        return data;
     }
 
     @SystemLog
