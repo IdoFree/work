@@ -43,12 +43,13 @@ public class TeacherController {
     @SystemLog
     @PostMapping("/search")
     @ApiOperation(value = "搜索老师")
-    public ResponseData searchTeacher(@ApiParam(name = "search_parameter", required = true, value = "搜索条件") @RequestBody SearchTeacherRequest request) {
+    public ResponseData searchTeacher(@ApiParam(name = "search_parameter", required = true, value = "搜索条件") @RequestBody SearchTeacherRequest request) throws Exception {
         List<TeacherModel> modelList = teacherService.searchTeachers(request.areaId, request.subjectId, request.page, request.pageSize);
         Logger.debug(modelList + "");
         ResponseData data = new ResponseData();
         data.setData(modelList);
         data.setStatus(modelList!=null);
+        data.setCode(200);
         return data;
     }
 

@@ -2,6 +2,7 @@ package com.weijiajiao.model.table;
 
 import com.weijiajiao.model.enum_type.EducationDegreeType;
 import com.weijiajiao.model.enum_type.SubjectType;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -29,7 +30,10 @@ public class TeacherInfo {
     @Enumerated(EnumType.STRING)
     private EducationDegreeType degreeType;
 
+    //个人简介
     private String introduce;
+
+
 
     private Boolean isTeacherMajor;
     private SubjectType subjectType;
@@ -41,6 +45,17 @@ public class TeacherInfo {
     private Float lizongScore;
     private Float musicScore;
     private Float sportScore;
+    private Float paintingScore;
+
+    //信息价格默认10元
+    @NotNull
+    @Column(name="info_price",columnDefinition="float default 10.00")
+    private Float infoPrice;
+
+    //授课说明
+    private String teachInstruction;
+
+
 
     public TeacherInfo(){
         super();
@@ -176,5 +191,29 @@ public class TeacherInfo {
 
     public void setIntroduce(String introduce) {
         this.introduce = introduce;
+    }
+
+    public Float getPaintingScore() {
+        return paintingScore;
+    }
+
+    public void setPaintingScore(Float paintingScore) {
+        this.paintingScore = paintingScore;
+    }
+
+    public String getTeachInstruction() {
+        return teachInstruction;
+    }
+
+    public void setTeachInstruction(String teachInstruction) {
+        this.teachInstruction = teachInstruction;
+    }
+
+    public Float getInfoPrice() {
+        return infoPrice;
+    }
+
+    public void setInfoPrice(Float infoPrice) {
+        this.infoPrice = infoPrice;
     }
 }

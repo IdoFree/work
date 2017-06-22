@@ -21,6 +21,7 @@ public class UserService {
         }
 
         if (!isUserExist(userInfo.getId())){
+            Logger.error("user not found");
             return null;
         }
         return userInfoRepository.save(userInfo);
