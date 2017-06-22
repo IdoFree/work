@@ -1,9 +1,7 @@
 package com.weijiajiao.model.table;
 
-import com.weijiajiao.model.response.CourseCategoryResponse;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by junli on 2017/6/6.
