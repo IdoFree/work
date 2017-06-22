@@ -11,6 +11,6 @@ import java.util.ArrayList;
  */
 public interface CourseSubCategoryRepository extends CrudRepository<CourseSubCategory, Long> {
 
-    @Cacheable(value = "parent_course_category_id")
+//    @Cacheable(value = "parent_course_category_id")
     ArrayList<CourseSubCategory> findByParentCourseCategory_id(Long id);
 }

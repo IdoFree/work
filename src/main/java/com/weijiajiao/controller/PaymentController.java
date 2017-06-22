@@ -32,16 +32,15 @@ public class PaymentController {
     private PaymentService paymentService;
 
 
-    @GetMapping
-    @ApiOperation(value = "支付信息，包括价格和免费劵")
-    @SystemLog
-    public PaymentInfoResponse getPaymentInfo(@RequestParam("userId") Long userId) {
-        return paymentService.getPaymentInfo(userId);
-    }
+//    @GetMapping
+//    @ApiOperation(value = "支付信息，包括价格和免费劵")
+//    @SystemLog
+//    public PaymentInfoResponse getPaymentInfo(@RequestParam("userId") Long userId) {
+//        return paymentService.getPaymentInfo(userId);
+//    }
 
     @PostMapping
     @ApiOperation(value = "支付老师联系方式")
-//    @SystemLog
     public ResponseData pay(@RequestBody PayRequest request) throws CouponNotFoundException {
        Boolean isSuccess = paymentService.pay(request);
        String message = isSuccess ? "支付成功" : "支付失败";

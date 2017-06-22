@@ -30,7 +30,7 @@ public class TeacherController {
     @SystemLog
     @GetMapping("/{teacherId}")
     @ApiOperation(value = "老师详情")
-    @ApiImplicitParam(paramType = "path", name = "teacherId", dataType = "int", value = "老师的TeacherId", required = true, defaultValue = "1002")
+    @ApiImplicitParam(paramType = "path", name = "teacherId", dataType = "int", value = "老师的TeacherId", required = true, defaultValue = "2")
     public ResponseData showTeacher(@Valid @PathVariable Integer teacherId) throws Exception {
         // TODO: 2017/6/12 购买过的老师调用 #getTeacherById(long,boolean) 包含phone字段
         TeacherModel model = teacherService.getTeacherById(teacherId);
