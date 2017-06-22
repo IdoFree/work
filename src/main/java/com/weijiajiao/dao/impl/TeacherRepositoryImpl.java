@@ -35,7 +35,7 @@ public class TeacherRepositoryImpl implements TeacherRepositoryCustom {
      * 2	14	14	http://tva2.sinaimg.cn/crop.0.0.180.180.180/8a8109e2jw1e8qgp5bmzyj2050050aa8.jpg	微信名1	真实名1	female	北京大学		college			141	144	137					11	440105
      * 4	16	16	http://tva2.sinaimg.cn/crop.0.0.180.180.180/8a8109e2jw1e8qgp5bmzyj2050050aa8.jpg	微信名3	真实名3	female	北京大学		college			124	123	130					11	440105
      *
-     * @param areaId   为空时传id=0
+     * @param areaId    为空时传id=0
      * @param subjectId 为空时传id=0
      * @return
      */
@@ -100,11 +100,11 @@ public class TeacherRepositoryImpl implements TeacherRepositoryCustom {
             if (arr[19] != null) {
                 teacherModel.setWenzong((Float) arr[19]);
             }
-            if (arr[20]!=null){
-                teacherModel.setPainting((Float)arr[20]);
+            if (arr[20] != null) {
+                teacherModel.setPainting((Float) arr[20]);
             }
             teacherModel.setTeachInstruction((String) arr[21]);
-            if (arr[22]!=null) {
+            if (arr[22] != null) {
                 teacherModel.setInfoPrice((Float) arr[22]);
             }
             // TODO: 2017/6/5  添加授课区域和授课科目、价格等
@@ -117,6 +117,7 @@ public class TeacherRepositoryImpl implements TeacherRepositoryCustom {
 
     /**
      * 用于查询已付费学生的老师，phone字段有值
+     *
      * @param studentId
      * @param page
      * @param pageSize
@@ -165,26 +166,55 @@ public class TeacherRepositoryImpl implements TeacherRepositoryCustom {
             if (arr[11] != null) {
                 teacherModel.setGaokao((Float) arr[11]);
             }
-            teacherModel.setUid(((BigInteger) arr[12]).longValue());
+            if (arr[12] != null) {
+                teacherModel.setPainting((Float) arr[12]);
+            }
+            teacherModel.setUid(((BigInteger) arr[13]).longValue());
             teacherModel.setIntroduce((String) arr[14]);
-            teacherModel.setUniversity((String) arr[15]);
-            teacherModel.setAvatar((String) arr[16]);
-            teacherModel.setGender((String) arr[17]);
-            teacherModel.setNickname((String) arr[18]);
-            teacherModel.setPhone((String) arr[19]);
-            teacherModel.setRealname((String) arr[20]);
-            teacherModel.setAid(((BigInteger) arr[21]).longValue());
+            if (arr[15] != null) {
+                teacherModel.setInfoPrice((Float) arr[15]);
+            }
+            teacherModel.setTeachInstruction((String) arr[16]);
+            teacherModel.setUniversity((String) arr[17]);
+            teacherModel.setAvatar((String) arr[18]);
+            teacherModel.setGender((String) arr[19]);
+            teacherModel.setNickname((String) arr[20]);
+            teacherModel.setPhone((String) arr[21]);
+            teacherModel.setRealname((String) arr[22]);
+            teacherModel.setAid(((BigInteger) arr[23]).longValue());
             teacherModel.setTeachAreas(areaRepository.queryAreaByTeacherId(((BigInteger) arr[0]).longValue()));
             teacherModel.setTeachCourses(courseRepository.queryCourseByTeacherId((((BigInteger) arr[0]).longValue())));
             teacherModelList.add(teacherModel);
         }
-
         return teacherModelList;
     }
 
     private String generateQueryTeacherByStudentIdSql(int page, int pageSize) {
         return "select distinct " +
-                "   ti.*,su.name,ui.avatar,ui.gender,ui.nick_name,ui.phone,ui.real_name,ui.account_id" +
+                "        ti.id," +
+                "        ti.chinese_score," +
+                "        ti.degree_type," +
+                "        ti.english_score," +
+                "        ti.is_teacher_major," +
+                "        ti.lizong_score," +
+                "        ti.major_name," +
+                "        ti.math_score," +
+                "        ti.music_score," +
+                "        ti.sport_score," +
+                "        ti.wenzong_score," +
+                "        ti.gaokao_score," +
+                "        ti.painting_score," +
+                "        ti.user_info_id," +
+                "        ti.introduce," +
+                "        ti.info_price," +
+                "        ti.teach_instruction," +
+                "        su.name," +
+                "        ui.avatar," +
+                "        ui.gender," +
+                "        ui.nick_name," +
+                "        ui.phone," +
+                "        ui.real_name," +
+                "        ui.account_id" +
                 "   from wjj_dev.wjj_teacher_info as ti" +
                 "   inner join wjj_dev.wjj_student_teacher_payed_mapping as stpm ON ti.id = stpm.teacher_id" +
                 "   inner join wjj_dev.wjj_user_info as ui ON ti.user_info_id = ui.id" +

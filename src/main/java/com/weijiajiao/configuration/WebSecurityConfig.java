@@ -18,14 +18,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(accountService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(accountService);
+//                .passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/area/**", "/article/**","/teacher/search","/teacher/{teacherId}").permitAll()
+                .antMatchers("/","/doc","/area/**", "/article/**","/teacher/search","/teacher/{teacherId}").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic().and()
@@ -34,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/**/favicon.ico");
+        web.ignoring().antMatchers("/assets/**","/images/**","/**/*.jsp");
     }
 
 }
