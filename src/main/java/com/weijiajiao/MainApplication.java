@@ -13,6 +13,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @EnableCaching
+@EnableAutoConfiguration(exclude = {
+        org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class,
+        org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration.class})
 public class MainApplication {
     public static void main(String[] args) {
         SpringApplication.run(MainApplication.class, args);
