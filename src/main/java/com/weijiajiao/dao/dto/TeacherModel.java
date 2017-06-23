@@ -23,11 +23,14 @@ public class TeacherModel extends BaseModel {
     String university;
     String phone;
 
+    Float infoPrice;
+
     List<CourseModel> teachCourses;
     List<AreaModel> teachAreas;
 
     Boolean isTeacherMajor;
     String introduce;
+    String teachInstruction;
     String degreeType;
     String major;
     Float gaokao;
@@ -38,6 +41,7 @@ public class TeacherModel extends BaseModel {
     Float wenzong;
     Float music;
     Float sport;
+    Float painting;
 
     public TeacherModel() {
     }
@@ -64,7 +68,11 @@ public class TeacherModel extends BaseModel {
         model.wenzong = info.getWenzongScore();
         model.music = info.getMusicScore();
         model.sport = info.getSportScore();
+        model.painting = info.getPaintingScore();
         model.introduce = info.getIntroduce();
+        model.infoPrice = info.getInfoPrice();
+        model.teachInstruction = info.getTeachInstruction();
+
         return model;
     }
 
@@ -289,6 +297,30 @@ public class TeacherModel extends BaseModel {
         this.phone = phone;
     }
 
+    public Float getInfoPrice() {
+        return infoPrice;
+    }
+
+    public void setInfoPrice(Float infoPrice) {
+        this.infoPrice = infoPrice;
+    }
+
+    public String getTeachInstruction() {
+        return teachInstruction;
+    }
+
+    public void setTeachInstruction(String teachInstruction) {
+        this.teachInstruction = teachInstruction;
+    }
+
+    public Float getPainting() {
+        return painting;
+    }
+
+    public void setPainting(Float painting) {
+        this.painting = painting;
+    }
+
     @Override
     public String toString() {
         return "TeacherModel{" +
@@ -301,10 +333,12 @@ public class TeacherModel extends BaseModel {
                 ", gender='" + gender + '\'' +
                 ", university='" + university + '\'' +
                 ", phone='" + phone + '\'' +
+                ", infoPrice=" + infoPrice +
                 ", teachCourses=" + teachCourses +
                 ", teachAreas=" + teachAreas +
                 ", isTeacherMajor=" + isTeacherMajor +
                 ", introduce='" + introduce + '\'' +
+                ", teachInstruction='" + teachInstruction + '\'' +
                 ", degreeType='" + degreeType + '\'' +
                 ", major='" + major + '\'' +
                 ", gaokao=" + gaokao +
@@ -315,6 +349,7 @@ public class TeacherModel extends BaseModel {
                 ", wenzong=" + wenzong +
                 ", music=" + music +
                 ", sport=" + sport +
+                ", painting=" + painting +
                 '}';
     }
 }

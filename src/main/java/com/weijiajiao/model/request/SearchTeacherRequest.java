@@ -40,4 +40,14 @@ public class SearchTeacherRequest {
    public void setPageSize(Integer pageSize) {
       this.pageSize = pageSize;
    }
+
+   public SearchTeacherRequest() {
+   }
+
+   public SearchTeacherRequest(Integer areaId, Integer subjectId, Integer page, Integer pageSize) {
+      this.areaId = areaId;
+      this.subjectId = subjectId;
+      this.page = page;
+      this.pageSize = pageSize;
+   }
 }
