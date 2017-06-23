@@ -10,6 +10,8 @@ import com.weijiajiao.model.table.PaymentRecord;
 import com.weijiajiao.model.table.TeacherInfo;
 import com.weijiajiao.model.table.UserInfo;
 import com.weijiajiao.repository.PaymentRecordRepository;
+import com.weijiajiao.repository.StudentRepository;
+import com.weijiajiao.repository.StudentTeacherPayedMappingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,12 @@ public class PaymentService {
 
     @Autowired
     private PaymentRecordRepository paymentRecordRepository;
+
+    @Autowired
+    private StudentTeacherPayedMappingService studentTeacherPayedMappingService;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     public Boolean pay(PayRequest request) throws CouponNotFoundException {
 
@@ -50,10 +58,17 @@ public class PaymentService {
         }
 
         record.setCreateTime(new Date());
+        studentTeacherPayedMappingService.savePayedInfo(getStudentId(request.getUserId()),request.getTeacherId());
 
         PaymentRecord savedRecord = paymentRecordRepository.save(record);
 
         return savedRecord != null;
+    }
+
+    private Long getStudentId(Long uid) {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(uid);
+        return studentRepository.findByUserInfo(userInfo).getId();
     }
 
     public PaymentInfoResponse getPaymentInfo(Long userId){
