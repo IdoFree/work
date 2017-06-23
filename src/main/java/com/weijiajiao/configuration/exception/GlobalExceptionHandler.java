@@ -20,6 +20,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ResponseData handleException(HttpServletRequest req, Exception e) {
+        e.printStackTrace();
         ResponseData response = new ResponseData();
         response.setMessage(e.getMessage());
         Boolean isCustomException = e instanceof CustomException;

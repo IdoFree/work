@@ -48,7 +48,7 @@ public class TeacherService {
         if (teacherInfo == null){
             return null;
         }
-        teacherModel = TeacherModel.parseFrom(teacherInfo);
+        teacherModel = TeacherModel.parseFrom(teacherInfo,hasPhone);
         teacherModel.setTeachCourses(courseRepository.queryCourseByTeacherId(teacherId));
         teacherModel.setTeachAreas(areaRepository.queryAreaByTeacherId(teacherId));
         teacherRedisDao.add(teacherModel);
