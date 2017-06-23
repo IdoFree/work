@@ -4,10 +4,12 @@ import com.weijiajiao.configuration.ResponseData;
 import com.weijiajiao.configuration.exception.CouponNotFoundException;
 import com.weijiajiao.dao.dto.TeacherModel;
 import com.weijiajiao.logcat.SystemLog;
+import com.weijiajiao.model.request.CreateTeacherRequest;
 import com.weijiajiao.model.request.PayRequest;
 import com.weijiajiao.model.request.PurchaseTeacherRequest;
 import com.weijiajiao.model.request.SearchTeacherRequest;
 import com.weijiajiao.model.table.StudentInfo;
+import com.weijiajiao.model.table.TeacherInfo;
 import com.weijiajiao.service.PaymentService;
 import com.weijiajiao.service.StudentService;
 import com.weijiajiao.service.StudentTeacherPayedMappingService;
@@ -63,6 +65,13 @@ public class TeacherController {
         data.setStatus(modelList != null);
         data.setCode(200);
         return data;
+    }
+
+    @PostMapping("/add")
+    @ApiOperation(value = "大学生招募接口，App后台调用")
+    public ResponseData addTeacher(@RequestBody CreateTeacherRequest request){
+        TeacherInfo savedTeacher = teacherService.createTeacher(request.convertToTeacherInfo());
+        return ResponseData.ok(savedTeacher);
     }
 
 //    @SystemLog

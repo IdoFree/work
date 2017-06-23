@@ -70,5 +70,10 @@ public class TeacherService {
         return teacherModelList;
     }
 
+    public TeacherInfo createTeacher(TeacherInfo teacher){
+        TeacherInfo savedTeacher = teacherRepository.save(teacher);
+        return savedTeacher;
+    }
+
 
 }

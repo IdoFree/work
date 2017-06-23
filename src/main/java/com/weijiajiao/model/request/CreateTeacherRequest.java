@@ -1,41 +1,18 @@
-package com.weijiajiao.model.table;
+package com.weijiajiao.model.request;
 
 import com.weijiajiao.configuration.WJJConst;
-import com.weijiajiao.model.enum_type.EducationDegreeType;
 import com.weijiajiao.model.enum_type.SubjectType;
-import org.hibernate.annotations.ColumnDefault;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import com.weijiajiao.model.table.TeacherInfo;
 
 /**
- * Created by junli on 2017/5/27.
+ * Created by junli on 2017/6/23.
  */
-
-@Entity
-@Table(name = "wjj_teacher_info")
-public class TeacherInfo {
-
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @OneToOne(cascade = {CascadeType.ALL})
-    private UserInfo userInfo;
-
-    @ManyToOne
-    private University university;
-
-    private String majorName;
-
-    @Enumerated(EnumType.STRING)
-    private EducationDegreeType degreeType;
-
-    //个人简介
-    private String introduce;
-
-    private Boolean isTeacherMajor;
+public class CreateTeacherRequest {
+    //授课说明
+    private String teachInstruction;
     private SubjectType subjectType;
+    private Boolean isTeacherMajor;
+
     private Float gaokaoScore;
     private Float chineseScore;
     private Float mathScore;
@@ -46,58 +23,12 @@ public class TeacherInfo {
     private Float sportScore;
     private Float paintingScore;
 
-    //信息价格默认10元
-    private Float infoPrice;
-
-    //授课说明
-    private String teachInstruction;
-
-    public TeacherInfo(){
-        super();
+    public String getTeachInstruction() {
+        return teachInstruction;
     }
 
-    public TeacherInfo(Long id){
-       this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
-    }
-
-    public University getUniversity() {
-        return university;
-    }
-
-    public void setUniversity(University university) {
-        this.university = university;
-    }
-
-    public String getMajorName() {
-        return majorName;
-    }
-
-    public void setMajorName(String majorName) {
-        this.majorName = majorName;
-    }
-
-    public EducationDegreeType getDegreeType() {
-        return degreeType;
-    }
-
-    public void setDegreeType(EducationDegreeType degreeType) {
-        this.degreeType = degreeType;
+    public void setTeachInstruction(String teachInstruction) {
+        this.teachInstruction = teachInstruction;
     }
 
     public SubjectType getSubjectType() {
@@ -180,14 +111,6 @@ public class TeacherInfo {
         this.sportScore = sportScore;
     }
 
-    public String getIntroduce() {
-        return introduce;
-    }
-
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce;
-    }
-
     public Float getPaintingScore() {
         return paintingScore;
     }
@@ -196,19 +119,22 @@ public class TeacherInfo {
         this.paintingScore = paintingScore;
     }
 
-    public String getTeachInstruction() {
-        return teachInstruction;
+    public TeacherInfo convertToTeacherInfo(){
+        TeacherInfo teacher = new TeacherInfo();
+        teacher.setTeachInstruction(this.getTeachInstruction());
+        teacher.setSubjectType(this.getSubjectType());
+        teacher.setTeacherMajor(this.getTeacherMajor());
+        teacher.setGaokaoScore(this.getGaokaoScore());
+        teacher.setChineseScore(this.getChineseScore());
+        teacher.setMathScore(this.getMathScore());
+        teacher.setEnglishScore(this.getEnglishScore());
+        teacher.setWenzongScore(this.getWenzongScore());
+        teacher.setLizongScore(this.getLizongScore());
+        teacher.setMusicScore(this.getMusicScore());
+        teacher.setSportScore(this.getSportScore());
+        teacher.setPaintingScore(this.getPaintingScore());
+
+        return teacher;
     }
 
-    public void setTeachInstruction(String teachInstruction) {
-        this.teachInstruction = teachInstruction;
-    }
-
-    public Float getInfoPrice() {
-        return WJJConst.CONTACT_TEACHER_PRICE;
-    }
-
-    public void setInfoPrice(Float infoPrice) {
-        this.infoPrice = WJJConst.CONTACT_TEACHER_PRICE;
-    }
 }
