@@ -2,6 +2,7 @@ package com.weijiajiao.dao.dto;
 
 import com.weijiajiao.model.enum_type.EducationDegreeType;
 import com.weijiajiao.model.enum_type.GenderType;
+import com.weijiajiao.model.enum_type.SubjectType;
 import com.weijiajiao.model.table.Area;
 import com.weijiajiao.model.table.TeacherInfo;
 import com.weijiajiao.model.table.UserInfo;
@@ -32,6 +33,7 @@ public class TeacherModel extends BaseModel {
     String introduce;
     String teachInstruction;
     String degreeType;
+    String subjectType;
     String major;
     Float gaokao;
     Float chinese;
@@ -72,6 +74,7 @@ public class TeacherModel extends BaseModel {
         model.introduce = info.getIntroduce();
         model.infoPrice = info.getInfoPrice();
         model.teachInstruction = info.getTeachInstruction();
+        model.subjectType = info.getSubjectType().name();
 
         return model;
     }
@@ -110,6 +113,14 @@ public class TeacherModel extends BaseModel {
                 break;
         }
         return degree;
+    }
+
+    public String getSubjectType() {
+        return subjectType;
+    }
+
+    public void setSubjectType(String subjectType) {
+        this.subjectType = subjectType;
     }
 
     public Long getTeacherId() {

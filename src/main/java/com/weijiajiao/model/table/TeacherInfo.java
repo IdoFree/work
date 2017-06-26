@@ -35,7 +35,10 @@ public class TeacherInfo {
     private String introduce;
 
     private Boolean isTeacherMajor;
+
+    @Enumerated(EnumType.STRING)
     private SubjectType subjectType;
+
     private Float gaokaoScore;
     private Float chineseScore;
     private Float mathScore;

@@ -107,6 +107,7 @@ public class TeacherRepositoryImpl implements TeacherRepositoryCustom {
             if (arr[22] != null) {
                 teacherModel.setInfoPrice((Float) arr[22]);
             }
+            teacherModel.setSubjectType((String) arr[23]);
             // TODO: 2017/6/5  添加授课区域和授课科目、价格等
             teacherModel.setTeachAreas(areaRepository.queryAreaByTeacherId(((BigInteger) arr[0]).longValue()));
             teacherModel.setTeachCourses(courseRepository.queryCourseByTeacherId((((BigInteger) arr[0]).longValue())));
@@ -255,7 +256,9 @@ public class TeacherRepositoryImpl implements TeacherRepositoryCustom {
                 "    tea.wenzong_score as wenzong," +
                 "    tea.painting_score as painting," +
                 "    tea.teach_instruction as teach_instruct," +
-                "    tea.info_price as info_price ");
+                "    tea.info_price as info_price," +
+                "    tea.subject_type as subject_type"
+        );
         teacherSql.append("    from wjj_dev.wjj_user_info as usr" +
                 "    inner join wjj_dev.wjj_teacher_info as tea ON usr.id = tea.user_info_id" +
                 "    inner join wjj_dev.core_sys_university as univ ON univ.id = tea.university_id");
