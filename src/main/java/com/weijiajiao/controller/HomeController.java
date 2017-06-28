@@ -10,4 +10,6 @@ public class HomeController {
         System.out.println("swagger-ui.html");
         return "redirect:swagger-ui.html";
     }
+    
+    
 }

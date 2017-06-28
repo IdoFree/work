@@ -12,10 +12,13 @@ import com.weijiajiao.model.table.UserInfo;
 import com.weijiajiao.repository.PaymentRecordRepository;
 import com.weijiajiao.repository.StudentRepository;
 import com.weijiajiao.repository.StudentTeacherPayedMappingRepository;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by junli on 2017/6/9.
@@ -77,6 +80,17 @@ public class PaymentService {
         Coupon[] coupons = couponService.availableCoupons(userId);
         response.setCoupons(coupons);
         return response;
+    }
+    
+    
+    public boolean teacherWasBuyByStudent(Long teacherid, Long StudentId ){
+    	List<PaymentRecord> records = paymentRecordRepository.findUserIdAndTeacherId(teacherid,StudentId);
+    	return !records.isEmpty() ;
+    }
+    
+    public List<PaymentRecord>  getRecordByTeacherIdAndStudentId(Long teacherid, Long StudentId ){
+    	List<PaymentRecord> records = paymentRecordRepository.findUserIdAndTeacherId(teacherid,StudentId);
+    	return records;
     }
 
 }

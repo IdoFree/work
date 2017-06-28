@@ -28,6 +28,6 @@ public class AreaController {
     @SystemLog
     public ResponseData fetchAllCities(){
         Area[] areas = configureService.getActivityCity();
-       return ResponseData.ok(areas);
+       return ResponseData.createSuccessResponse(areas);
     }
 }

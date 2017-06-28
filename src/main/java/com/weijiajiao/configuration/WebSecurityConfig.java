@@ -1,6 +1,14 @@
 package com.weijiajiao.configuration;
+import javax.servlet.Filter;
 
-//import com.weijiajiao.service.AccountService;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.weijiajiao.filter.SecureFilter;
+
+//package com.weijiajiao.configuration;
+//
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,7 +17,9 @@ package com.weijiajiao.configuration;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+//
+//import com.weijiajiao.service.AccountService;
+//
 //@EnableWebSecurity
 //@Configuration
 //public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -39,3 +49,28 @@ package com.weijiajiao.configuration;
 //    }
 //
 //}
+
+@Configuration
+public class WebSecurityConfig {
+
+	@Bean
+	public FilterRegistrationBean filterRegistration() {
+		
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(secureFilter());
+		registration.addUrlPatterns("/*");
+		//the parameters can be used in the filter init method
+//		registration.addInitParameter("paramName", "paramValue");
+		registration.setName("secureFilter");
+		registration.setOrder(1);
+		return registration;
+	} 
+	
+	public Filter secureFilter() {
+		return new SecureFilter();
+	}
+	
+	
+	
+}
+

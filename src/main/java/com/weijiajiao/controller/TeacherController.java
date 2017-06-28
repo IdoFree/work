@@ -71,7 +71,7 @@ public class TeacherController {
     @ApiOperation(value = "大学生招募接口，App后台调用")
     public ResponseData addTeacher(@RequestBody CreateTeacherRequest request){
         TeacherInfo savedTeacher = teacherService.createTeacher(request.convertToTeacherInfo());
-        return ResponseData.ok(savedTeacher);
+        return ResponseData.createSuccessResponse(savedTeacher);
     }
 
 //    @SystemLog

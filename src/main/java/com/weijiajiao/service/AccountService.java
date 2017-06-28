@@ -1,23 +1,33 @@
 package com.weijiajiao.service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.weijiajiao.model.table.Account;
-import com.weijiajiao.model.table.UserInfo;
 import com.weijiajiao.repository.AccountRepository;
-import com.weijiajiao.repository.UserInfoRepository;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+
+//package com.weijiajiao.service;
+//
+//import java.util.HashSet;
+//import java.util.Set;
+//
+//import org.apache.commons.lang3.StringUtils;
+//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
-
-import java.util.HashSet;
-import java.util.Set;
-
-/**
- * Created by fly on 2017/6/14.
- */
+////import org.springframework.security.core.GrantedAuthority;
+////import org.springframework.security.core.userdetails.UserDetails;
+////import org.springframework.security.core.userdetails.UserDetailsService;
+////import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.stereotype.Component;
+//
+//import com.weijiajiao.model.table.Account;
+//import com.weijiajiao.repository.AccountRepository;
+//
+///**
+// * Created by fly on 2017/6/14.
+// */
 //@Component
 //public class AccountService implements UserDetailsService {
 //    @Autowired
@@ -40,3 +50,16 @@ import java.util.Set;
 //                authorities);
 //    }
 //}
+
+
+@Component
+public class AccountService {
+    @Autowired
+    private AccountRepository accountRepository;
+
+    public Account getStudentByStuId(Long acountId){
+        return accountRepository.findOne(acountId);
+    }
+    
+
+}

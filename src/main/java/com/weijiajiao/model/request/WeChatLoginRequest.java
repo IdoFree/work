@@ -7,6 +7,19 @@ import com.weijiajiao.model.enum_type.UserType;
  */
 
 public class WeChatLoginRequest {
-    public String code;
-    public UserType type;
+    private String code;
+    private UserType type;
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public UserType getType() {
+		return type;
+	}
+	public void setType(UserType type) {
+		this.type = type;
+	}
+    	
 }

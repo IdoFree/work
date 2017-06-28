@@ -8,6 +8,7 @@ import com.weijiajiao.repository.CourseRepository;
 import com.weijiajiao.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -74,6 +75,7 @@ public class TeacherService {
         TeacherInfo savedTeacher = teacherRepository.save(teacher);
         return savedTeacher;
     }
+
 
 
 }

@@ -7,6 +7,7 @@ import com.weijiajiao.logcat.SystemLog;
 import com.weijiajiao.model.request.ShareTeacherRequest;
 import com.weijiajiao.model.request.UpdateUserInfoRequest;
 import com.weijiajiao.model.table.UserInfo;
+import com.weijiajiao.service.PaymentService;
 import com.weijiajiao.service.TeacherService;
 import com.weijiajiao.service.UserService;
 import io.swagger.annotations.Api;
@@ -31,6 +32,10 @@ public class StudentController {
 
     @Autowired
     UserService userService;
+    
+    @Autowired
+    private PaymentService paymentService;
+    
 
     @SystemLog
     @PostMapping("/profile/update")
@@ -46,7 +51,7 @@ public class StudentController {
     @SystemLog
     @GetMapping("/purchased_teachers")
     @ApiOperation(value = "购买的老师列表")
-    public ResponseData purchasedTeachers(Long studentId, int page, int pageSize) throws JsonProcessingException {
+    public ResponseData purchasedTeachers(Long studentId, Integer page, Integer pageSize) throws JsonProcessingException {
         List<TeacherModel> modelList = teacherService.getTeachersWithPhoneByStudentId(studentId,page,pageSize);
         ResponseData data = new ResponseData();
         data.setStatus(modelList!=null);

@@ -4,14 +4,31 @@ package com.weijiajiao.configuration;
  * Created by junli on 2017/6/12.
  */
 public class ResponseData {
+	
+	public static final int NOT_FOUND = 404;
+	public static final int REDIRECT = 302;
+	public static final int INTERNAL_ERROR = 500;
+	public static final int FORBIDDEN = 403;
+	public static final int INTERNAL_SERVER_ERROR = 500;
+	public static final int NOT_IMPLEMENTED = 501;
+	public static final int REQUEST_TIMEOUT = 408;
+	
 
     private Boolean status = true;
     private Integer code = 200;
     private String message;
     private Object data;
 
-    public static ResponseData ok(Object data) {
+    public static ResponseData createSuccessResponse(Object data) {
         return new ResponseData(data);
+    }
+    
+    public static ResponseData createFailedRespnse(String msg,Integer code){
+    	ResponseData response = new ResponseData();
+    	response.setMessage(msg);
+    	response.setCode(code);
+    	response.setStatus(false);
+    	return response;
     }
 
     public ResponseData(Object data) {

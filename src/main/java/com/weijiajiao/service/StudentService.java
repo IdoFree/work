@@ -23,4 +23,11 @@ public class StudentService {
         userInfo.setId(uid);
         return studentRepository.findByUserInfo(userInfo);
     }
+    
+    
+    public StudentInfo createStudent(StudentInfo studentInfo){
+    	return studentRepository.save(studentInfo);
+    	
+    }
+    
 }

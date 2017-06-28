@@ -1,10 +1,11 @@
 package com.weijiajiao.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.weijiajiao.model.table.UserInfo;
 import com.weijiajiao.repository.UserInfoRepository;
 import com.weijiajiao.utils.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by fly on 2017/6/20.
@@ -29,5 +30,13 @@ public class UserService {
 
     public boolean isUserExist(long userId){
         return userInfoRepository.exists(userId);
+    }
+    
+    
+    public UserInfo getUserByOpenId(String openid){
+    	if(openid == null){
+    		return null;
+    	}
+    	return userInfoRepository.findUserInfoByOpenId(openid);
     }
 }
