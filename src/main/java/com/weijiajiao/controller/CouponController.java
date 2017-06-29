@@ -21,7 +21,8 @@ public class CouponController {
     @ApiOperation(value = "查看用户的优惠卷")
     @SystemLog
     public String fetchCoupons(){
-       return "该方法还未实现";
+       //TODO
+        return "该方法还未实现";
     }
 
     @PostMapping("/purchase")

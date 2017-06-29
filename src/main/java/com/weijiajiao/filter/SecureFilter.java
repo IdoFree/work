@@ -14,6 +14,9 @@ import javax.servlet.http.HttpSession;
 
 
 public  class SecureFilter implements Filter{
+	private static final Long SECOND = 1000L;
+	private static final Long MINUTE = SECOND * 60;
+	
 
 	@Override
 	public void destroy() {
@@ -29,7 +32,7 @@ public  class SecureFilter implements Filter{
 
         //由于web.xml中设置Filter过滤全部请求，可以排除不需要过滤的url
         String requestURI = req.getRequestURI();
-        if(requestURI.equals("/wechat_login") || requestURI.endsWith("favicon.ico") ||
+        if(requestURI.equals("/auth/login_page") || requestURI.endsWith("/wechat_login")|| requestURI.endsWith("favicon.ico") ||
         		requestURI.contains("/css/")||requestURI.contains("/images/") 
         		||requestURI.contains("/js/") ){
             chain.doFilter(request, response);
@@ -37,9 +40,13 @@ public  class SecureFilter implements Filter{
         }
         
         //判断用户是否登录，进行页面的处理
-        if(null == session.getAttribute("user")){
-            //未登录用户，重定向到登录页面
-            ((HttpServletResponse)response).sendRedirect("/wechat_login");
+        Long currentTime = System.currentTimeMillis();
+        Long freezonTime_m = (currentTime - session.getLastAccessedTime())/ MINUTE ;
+        Long createTimeTillNow =( currentTime - session.getCreationTime()) / MINUTE;
+        if(session.isNew() || freezonTime_m > 1  || createTimeTillNow > 30){
+            //未登录用户，或者session 超过时间重定向到登录页面
+        	session.invalidate();
+            ((HttpServletResponse)response).sendRedirect("/auth/login_page");
             return;
         } else {
             //已登录用户，允许访问
