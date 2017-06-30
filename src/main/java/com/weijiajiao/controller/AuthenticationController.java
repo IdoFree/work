@@ -5,34 +5,30 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
-import com.weijiajiao.model.table.TeacherInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.weijiajiao.configuration.ResponseData;
+import com.weijiajiao.configuration.WJJConst;
 import com.weijiajiao.logcat.SystemLog;
-import com.weijiajiao.model.enum_type.UserType;
 import com.weijiajiao.model.request.UniversityTeacherRegisterRequest;
 import com.weijiajiao.model.request.WeChatLoginRequest;
 import com.weijiajiao.model.response.WechatLoginResult;
 import com.weijiajiao.model.table.StudentInfo;
+import com.weijiajiao.model.table.TeacherInfo;
 import com.weijiajiao.model.table.UserInfo;
 import com.weijiajiao.service.StudentService;
 import com.weijiajiao.service.TeacherService;
 import com.weijiajiao.service.UserService;
-import com.weijiajiao.utils.HttpUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -46,6 +42,8 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping("auth")
 @Api(value = "/auth", description = "用户认证相关的操作")
 public class AuthenticationController {
+	private static final Logger log = LoggerFactory.getLogger(AuthenticationController.class);
+	
 	private static final String APPID = "";
 	private static final String APP_SCRECT = "";
 
@@ -64,6 +62,7 @@ public class AuthenticationController {
     public ResponseData login(@ApiParam(name = "wechat_login_param" ,required = true, value = "微信小程序登陆参数") 
     		@ModelAttribute("test") WeChatLoginRequest request
     		,HttpServletRequest httpRequest,HttpServletResponse httpResponse){
+    	
     	// get the user information  from the database and then store it into the session
     	String code = request.getCode();;
     	String url = "https://api.weixin.qq.com/sns/jscode2session?appid="+APPID+"&secret="+APP_SCRECT+"&js_code="+code+"&grant_type=authorization_code";
@@ -85,16 +84,17 @@ public class AuthenticationController {
     		userInfo = userService.getUserByOpenId(loginResult.getOpenid());
     		if(userInfo == null){
     			httpResponse.sendRedirect("sign_up");
+    			log.info("You don't have a account yet, Please sign up first.");
     			return ResponseData.createFailedRespnse("You don't have a account yet, Please sign up first.", ResponseData.FORBIDDEN);
     		}
 
     		//if yes, login and store the user information to the session for later connection
     		HttpSession session = httpRequest.getSession();
-    		session.setAttribute("user", userInfo.getNickName());
-    		session.setAttribute("userId", userInfo.getId());
+    		session.setAttribute(WJJConst.USER_NAME, userInfo.getNickName());
+    		session.setAttribute(WJJConst.USER_ID, userInfo.getId());
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(),e);
 			return ResponseData.createFailedRespnse("Server error", ResponseData.INTERNAL_SERVER_ERROR);
 		}
     	return ResponseData.createSuccessResponse(null);
@@ -133,13 +133,21 @@ public class AuthenticationController {
 
 		TeacherInfo teacherInfo = new TeacherInfo();
 		teacherInfo.setChineseScore(request.getChineseScore());
+		teacherInfo.setMathScore(request.getMathScore());
+		teacherInfo.setEnglishScore(request.getEnglishScore());
+		teacherInfo.setLizongScore(request.getLizongScore());
+		teacherInfo.setWenzongScore(request.getWenzongScore());
+		teacherInfo.setMusicScore(request.getMathScore());
+		teacherInfo.setSportScore(request.getSportScore());
+		teacherInfo.setGaokaoScore(request.getGaokaoScore());
+		teacherInfo.setTeacherMajor(request.getTeacherMajor());
 		//TODO  create a new teacher , to the get set..
 		//this interface is used by the mobile app , the app will send full data
 		//then we will create a teacher record in this database for the wechat app
 
     	teacherService.createTeacher(teacherInfo);
-
-    	return "该方法还未实现";
+    	log.info("老师 注册成功");
+    	return "注册成功";
     }
     
 

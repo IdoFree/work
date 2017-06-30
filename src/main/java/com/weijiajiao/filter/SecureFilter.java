@@ -30,11 +30,12 @@ public  class SecureFilter implements Filter{
         HttpServletRequest req = (HttpServletRequest)request;
         HttpSession session = req.getSession();
 
-        //由于web.xml中设置Filter过滤全部请求，可以排除不需要过滤的url
         String requestURI = req.getRequestURI();
-        if(requestURI.equals("/auth/login_page") || requestURI.endsWith("/wechat_login")|| requestURI.endsWith("favicon.ico") ||
-        		requestURI.contains("/css/")||requestURI.contains("/images/") 
-        		||requestURI.contains("/js/") ){
+        boolean ingnoredURLs = requestURI.equals("/auth/login_page") || requestURI.endsWith("/wechat_login")|| requestURI.endsWith("favicon.ico") ||
+        		requestURI.contains("/css/")||requestURI.contains("/images/")
+        		||requestURI.contains("/js/");
+        if(  ingnoredURLs ){
+        	//允许访问的链接，允许访问
             chain.doFilter(request, response);
             return;
         }
@@ -48,9 +49,8 @@ public  class SecureFilter implements Filter{
         	session.invalidate();
             ((HttpServletResponse)response).sendRedirect("/auth/login_page");
             return;
-        } else {
-            //已登录用户，允许访问
-            chain.doFilter(request, response);
+        }else{
+        	chain.doFilter(request, response);
         }
 	}
 

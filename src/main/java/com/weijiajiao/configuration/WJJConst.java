@@ -5,4 +5,6 @@ package com.weijiajiao.configuration;
  */
 public class WJJConst {
     public static float CONTACT_TEACHER_PRICE = 10.0f;
+    public static final String USER_ID = "userId";
+    public static final String USER_NAME = "user";
 }

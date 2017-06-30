@@ -42,6 +42,7 @@ public class PaymentController {
     @PostMapping
     @ApiOperation(value = "支付老师联系方式")
     public ResponseData pay(@RequestBody PayRequest request) throws CouponNotFoundException {
+    	//TODO need to implement the wechat payment method
        Boolean isSuccess = paymentService.pay(request);
        String message = isSuccess ? "支付成功" : "支付失败";
        ResponseData response = new ResponseData();

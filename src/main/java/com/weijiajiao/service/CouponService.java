@@ -32,6 +32,11 @@ public class CouponService {
         couponReponsitory.save(coupon);
         return coupon;
     }
+    
+    public Coupon createFreeCoupon(Coupon coupon){
+        couponReponsitory.save(coupon);
+        return coupon;
+    }
 
     public Coupon useCoupon(Long couponId){
         Coupon coupon = couponReponsitory.findOne(couponId);
