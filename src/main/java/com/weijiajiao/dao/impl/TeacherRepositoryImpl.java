@@ -4,7 +4,7 @@ import com.weijiajiao.dao.custom.TeacherRepositoryCustom;
 import com.weijiajiao.dao.dto.TeacherModel;
 import com.weijiajiao.repository.AreaRepository;
 import com.weijiajiao.repository.CourseRepository;
-import com.weijiajiao.utils.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
@@ -13,11 +13,16 @@ import javax.persistence.Query;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * Created by fly on 2017/6/2.
  */
 public class TeacherRepositoryImpl implements TeacherRepositoryCustom {
+    private final  static Logger logger = LoggerFactory.getLogger(TeacherRepositoryImpl.class);
+
     @Autowired
     @PersistenceContext
     private EntityManager entityManager;
@@ -45,7 +50,7 @@ public class TeacherRepositoryImpl implements TeacherRepositoryCustom {
         String teacherSql = "";
         teacherSql = generateSearchTeacherByAreaAndSubjectSql(areaId, subjectId, page, pageSize);
 
-        Logger.debug(teacherSql.toString());
+        logger.debug(teacherSql.toString());
 
         Query query = entityManager.createNativeQuery(teacherSql);
         if (subjectId != 0) {

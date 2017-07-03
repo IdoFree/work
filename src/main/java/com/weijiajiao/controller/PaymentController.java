@@ -39,7 +39,7 @@ public class PaymentController {
 //        return paymentService.getPaymentInfo(userId);
 //    }
 
-    @PostMapping
+    @PostMapping("/pay")
     @ApiOperation(value = "支付老师联系方式")
     public ResponseData pay(@RequestBody PayRequest request) throws CouponNotFoundException {
     	//TODO need to implement the wechat payment method
@@ -50,5 +50,20 @@ public class PaymentController {
        response.setMessage(message);
        return response;
     }
+    
+    @PostMapping("/wechat_pay")
+    @ApiOperation(value = "发起微信统一下单")
+    public ResponseData payForWechat(@RequestBody PayRequest request) throws CouponNotFoundException {
+    	//TODO need to implement the wechat payment method
+    	Boolean isSuccess = paymentService.pay(request);
+    	String message = isSuccess ? "支付成功" : "支付失败";
+    	ResponseData response = new ResponseData();
+    	response.setStatus(isSuccess);
+    	response.setMessage(message);
+    	return response;
+    }
+    
+    
+    
 
 }

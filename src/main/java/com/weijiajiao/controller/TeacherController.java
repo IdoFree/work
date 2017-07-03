@@ -1,21 +1,21 @@
 package com.weijiajiao.controller;
 
 import com.weijiajiao.configuration.ResponseData;
-import com.weijiajiao.configuration.exception.CouponNotFoundException;
 import com.weijiajiao.dao.dto.TeacherModel;
 import com.weijiajiao.logcat.SystemLog;
 import com.weijiajiao.model.request.CreateTeacherRequest;
-import com.weijiajiao.model.request.PayRequest;
-import com.weijiajiao.model.request.PurchaseTeacherRequest;
 import com.weijiajiao.model.request.SearchTeacherRequest;
-import com.weijiajiao.model.table.StudentInfo;
 import com.weijiajiao.model.table.TeacherInfo;
 import com.weijiajiao.service.PaymentService;
 import com.weijiajiao.service.StudentService;
 import com.weijiajiao.service.StudentTeacherPayedMappingService;
 import com.weijiajiao.service.TeacherService;
-import com.weijiajiao.utils.Logger;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +30,8 @@ import java.util.List;
 @RequestMapping("teacher")
 @Api(value = "/teacher", description = "老师相关的操作")
 public class TeacherController {
+    private final  static Logger logger = LoggerFactory.getLogger(TeacherController.class);
+
     @Autowired
     TeacherService teacherService;
     @Autowired
@@ -59,7 +61,7 @@ public class TeacherController {
     @ApiOperation(value = "搜索老师")
     public ResponseData searchTeacher(@ApiParam(name = "search_parameter", required = true, value = "搜索条件") @RequestBody SearchTeacherRequest request) throws Exception {
         List<TeacherModel> modelList = teacherService.searchTeachers(request.areaId, request.subjectId, request.page, request.pageSize);
-        Logger.debug(modelList + "");
+        logger.debug(modelList + "");
         ResponseData data = new ResponseData();
         data.setData(modelList);
         data.setStatus(modelList != null);

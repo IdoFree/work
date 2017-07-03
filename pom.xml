@@ -22,6 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <weixin-java-pay.version>2.7.0</weixin-java-pay.version>
     </properties>
 
     <dependencies>
@@ -109,6 +110,12 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
+        
+        <dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-pay</artifactId>
+			<version>${weixin-java-pay.version}</version>
+		</dependency>
 
 	<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 	<dependency>
@@ -117,6 +124,14 @@
 		<version>2.8.0</version>
 	</dependency>
         
+        <!-- https://mvnrepository.com/artifact/org.jodd/jodd-all -->
+	<dependency>
+	    <groupId>org.jodd</groupId>
+	    <artifactId>jodd-all</artifactId>
+	    <version>3.8.6</version>
+	</dependency>
+
+
 
     </dependencies>
 

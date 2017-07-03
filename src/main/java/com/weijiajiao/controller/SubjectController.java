@@ -1,5 +1,6 @@
 package com.weijiajiao.controller;
 
+import com.weijiajiao.configuration.ResponseData;
 import com.weijiajiao.logcat.SystemLog;
 import com.weijiajiao.model.response.CourseCategoryResponse;
 import com.weijiajiao.service.ConfigureService;
@@ -25,8 +26,9 @@ public class SubjectController {
     @SystemLog
     @GetMapping("/categories")
     @ApiOperation(value = "获取科目分类")
-    public CourseCategoryResponse fetchAllSubjects(){
-        return configureService.getCourseCategories();
+    public ResponseData fetchAllSubjects(){
+
+        return ResponseData.createSuccessResponse(configureService.getCourseCategories());
     }
 
 }

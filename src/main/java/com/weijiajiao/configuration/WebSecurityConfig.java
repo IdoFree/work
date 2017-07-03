@@ -53,22 +53,22 @@ import com.weijiajiao.filter.SecureFilter;
 @Configuration
 public class WebSecurityConfig {
 
-	@Bean
+	/*@Bean
 	public FilterRegistrationBean filterRegistration() {
-		
+
 		FilterRegistrationBean registration = new FilterRegistrationBean();
 		registration.setFilter(secureFilter());
-		registration.addUrlPatterns("/*");
+		registration.addUrlPatterns("*//*");
 		//the parameters can be used in the filter init method
 //		registration.addInitParameter("paramName", "paramValue");
 		registration.setName("secureFilter");
 		registration.setOrder(1);
 		return registration;
-	} 
-	
+	}
+
 	public Filter secureFilter() {
 		return new SecureFilter();
-	}
+	}*/
 	
 	
 	
